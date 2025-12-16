@@ -1,0 +1,59 @@
+/* Custom Footer Styles */
+
+.footer {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer__col {
+  margin-bottom: 1.5rem; /* Space between columns on smaller screens */
+}
+
+.footer__title {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.footer__item {
+  margin-bottom: 0.5rem;
+}
+
+.footer__link-item {
+  color: var(--ifm-footer-link-color);
+  text-decoration: none;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-footer-link-hover-color);
+  text-decoration: underline;
+}
+
+/* Social Icons specific styling */
+.social-icons {
+  display: flex;
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons .footer__item {
+  margin-right: 1.5rem; /* Space between icons */
+  margin-bottom: 0; /* No vertical space needed for horizontal icons */
+}
+
+.social-icons .footer__item a {
+  color: var(--ifm-footer-link-color); /* Inherit footer link color */
+  font-size: 1.5rem; /* Adjust icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icons .footer__item a:hover {
+  color: var(--ifm-primary-color); /* Highlight on hover */
+}
+
+/* Ensure copyright text is centered and has proper spacing */
+.footer__bottom {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ifm-footer-border-color); /* Subtle separator */
+}

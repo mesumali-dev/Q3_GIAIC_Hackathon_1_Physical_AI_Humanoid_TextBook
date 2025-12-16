@@ -1,0 +1,76 @@
+---
+title: "Sensor Integration in Simulation"
+summary: "Learn how to add and configure common sensors like cameras, LiDAR, and IMUs in your simulated robot."
+tags: [sensors, simulation, camera, lidar, imu, ros2, gazebo]
+keywords: [sensor, simulation, camera, lidar, imu, ros, gazebo, plugin, data]
+learningObjectives:
+  - "Understand how sensors are simulated in Gazebo."
+  - "Learn how to add a camera, LiDAR, and IMU to a URDF model."
+  - "Be able to visualize sensor data in RViz2."
+prerequisites: ["Gazebo Simulation Fundamentals"]
+outcome: "Readers will be able to equip their simulated robots with a variety of sensors and consume the sensor data in ROS 2."
+successCriteria:
+  - "Add a camera to a URDF and view the image feed in RViz2."
+  - "Add a LiDAR sensor and visualize the point cloud data."
+  - "Explain the role of a Gazebo sensor plugin."
+toolsUsed: [Gazebo, ROS 2, URDF]
+relatedConcepts: [sensor-models, computer-vision, point-clouds, inertial-measurement]
+---
+import Prerequisites from '@site/src/components/Prerequisites';
+import LearningObjective from '@site/src/components/LearningObjective';
+import Outcome from '@site/src/components/Outcome';
+import SuccessCriteria from '@site/src/components/SuccessCriteria';
+import Exercise from '@site/src/components/Exercise';
+import Checkpoint from '@site/src/components/Checkpoint';
+
+# Chapter 1: Sensor Integration in Simulation
+
+This chapter covers the integration of common sensors like cameras, LiDAR, and IMUs in a simulation environment.
+
+<Prerequisites>
+  <p>You should have a robot model in URDF and be able to spawn it in Gazebo.</p>
+</Prerequisites>
+
+<LearningObjective>
+  <ul>
+    <li>Understand how sensors are simulated in Gazebo.</li>
+    <li>Learn how to add a camera, LiDAR, and IMU to a URDF model.</li>
+    <li>Be able to visualize sensor data in RViz2.</li>
+  </ul>
+</LearningObjective>
+
+## Gazebo Sensor Plugins
+
+In Gazebo, sensors are implemented as **plugins**. These plugins generate sensor data based on the state of the simulated world and publish it to ROS 2 topics. To add a sensor to your robot, you need to add a `<sensor>` block to your URDF or SDF file and configure the appropriate plugin.
+
+## Camera
+
+A camera sensor simulates a real-world camera, publishing images to a ROS 2 topic. You can configure the camera's resolution, frame rate, and other parameters. The `gazebo_ros_camera` plugin is commonly used for this.
+
+## LiDAR
+
+A LiDAR (Light Detection and Ranging) sensor measures distances by emitting laser beams. In Gazebo, a LiDAR sensor plugin simulates this by casting rays into the environment and calculating the distances to objects. The data is typically published as a `sensor_msgs/msg/LaserScan` or `sensor_msgs/msg/PointCloud2` message.
+
+## IMU
+
+An IMU (Inertial Measurement Unit) measures a robot's orientation, angular velocity, and linear acceleration. A Gazebo IMU plugin simulates the readings of a real IMU, often with configurable noise models to make the simulation more realistic.
+
+<Checkpoint>
+  <p>What is the role of a Gazebo plugin in sensor simulation?</p>
+</Checkpoint>
+
+<Exercise>
+  <p>Add a camera sensor to the front of your simulated robot's chassis. Configure the `gazebo_ros_camera` plugin to publish images to a ROS 2 topic. Use RViz2 to visualize the camera feed.</p>
+</Exercise>
+
+<Outcome>
+  <p>Your simulated robot can now "see" the world! This is the first step towards building autonomous robots that can perceive and react to their environment.</p>
+</Outcome>
+
+<SuccessCriteria>
+  <ul>
+    <li>Add a camera to a URDF and view the image feed in RViz2.</li>
+    <li>Add a LiDAR sensor and visualize the point cloud data.</li>
+    <li>Explain the role of a Gazebo sensor plugin.</li>
+  </ul>
+</SuccessCriteria>

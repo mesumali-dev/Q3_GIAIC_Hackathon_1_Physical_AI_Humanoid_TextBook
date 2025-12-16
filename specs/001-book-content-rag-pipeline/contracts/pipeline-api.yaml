@@ -1,0 +1,395 @@
+openapi: 3.0.0
+info:
+  title: Book Content RAG Pipeline API
+  description: API specification for the book content crawling, chunking, embedding, and storage pipeline
+  version: 1.0.0
+  contact:
+    name: RAG Pipeline Team
+
+paths:
+  /pipeline/crawl:
+    post:
+      summary: Crawl book pages from a base URL
+      description: Discovers and crawls all pages from a Docusaurus book URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CrawlRequest'
+      responses:
+        '200':
+          description: Crawling completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CrawlResponse'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during crawling
+      tags:
+        - Pipeline
+
+  /pipeline/clean:
+    post:
+      summary: Clean and extract text from crawled pages
+      description: Extracts clean text content from crawled HTML pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CleanRequest'
+      responses:
+        '200':
+          description: Cleaning completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CleanResponse'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during cleaning
+      tags:
+        - Pipeline
+
+  /pipeline/chunk:
+    post:
+      summary: Chunk text content into tokens
+      description: Splits text content into chunks of specified token length with overlap
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChunkRequest'
+      responses:
+        '200':
+          description: Chunking completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChunkResponse'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during chunking
+      tags:
+        - Pipeline
+
+  /pipeline/embed:
+    post:
+      summary: Generate embeddings for text chunks
+      description: Creates vector embeddings for text chunks using Cohere API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmbedRequest'
+      responses:
+        '200':
+          description: Embeddings generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbedResponse'
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Rate limit exceeded with Cohere API
+        '500':
+          description: Internal server error during embedding
+      tags:
+        - Pipeline
+
+  /pipeline/upload:
+    post:
+      summary: Upload embeddings to Qdrant
+      description: Stores embedding vectors and metadata in Qdrant vector database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadRequest'
+      responses:
+        '200':
+          description: Upload completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during upload
+      tags:
+        - Pipeline
+
+  /pipeline/validate:
+    get:
+      summary: Validate pipeline completion
+      description: Checks that all steps completed successfully and data integrity is maintained
+      responses:
+        '200':
+          description: Validation completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+        '500':
+          description: Validation failed or internal error
+      tags:
+        - Pipeline
+
+  /pipeline/status:
+    get:
+      summary: Get pipeline execution status
+      description: Returns the current status of the pipeline execution
+      responses:
+        '200':
+          description: Current pipeline status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+      tags:
+        - Pipeline
+
+components:
+  schemas:
+    CrawlRequest:
+      type: object
+      required:
+        - baseUrl
+        - includeSitemap
+      properties:
+        baseUrl:
+          type: string
+          format: uri
+          description: Base URL of the Docusaurus book to crawl
+          example: "https://my-book.github.io"
+        includeSitemap:
+          type: boolean
+          description: Whether to use sitemap.xml for URL discovery (default: true)
+          default: true
+        maxPages:
+          type: integer
+          description: Maximum number of pages to crawl (default: unlimited)
+          default: -1
+        delayBetweenRequests:
+          type: number
+          description: Delay in seconds between requests to be respectful (default: 1)
+          default: 1
+
+    CrawlResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the crawling was successful
+        crawledPages:
+          type: integer
+          description: Number of pages successfully crawled
+        errors:
+          type: integer
+          description: Number of pages that failed to crawl
+        totalPages:
+          type: integer
+          description: Total number of pages discovered
+        message:
+          type: string
+          description: Additional information about the crawling process
+
+    CleanRequest:
+      type: object
+      properties:
+        pagesPath:
+          type: string
+          description: Path to the crawled pages directory (default: data/pages/)
+          default: "data/pages/"
+        outputFormat:
+          type: string
+          enum: [text, markdown]
+          description: Output format for cleaned content (default: text)
+          default: text
+
+    CleanResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the cleaning was successful
+        processedPages:
+          type: integer
+          description: Number of pages processed
+        cleanedContentCount:
+          type: integer
+          description: Number of cleaned content items created
+        message:
+          type: string
+          description: Additional information about the cleaning process
+
+    ChunkRequest:
+      type: object
+      properties:
+        minTokens:
+          type: integer
+          description: Minimum tokens per chunk (default: 300)
+          default: 300
+          minimum: 100
+          maximum: 1000
+        maxTokens:
+          type: integer
+          description: Maximum tokens per chunk (default: 500)
+          default: 500
+          minimum: 100
+          maximum: 1000
+        overlapPercent:
+          type: number
+          description: Overlap percentage between chunks (default: 15)
+          default: 15
+          minimum: 0
+          maximum: 50
+        contentPath:
+          type: string
+          description: Path to the cleaned content (default: data/cleaned/)
+          default: "data/cleaned/"
+
+    ChunkResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the chunking was successful
+        chunksCreated:
+          type: integer
+          description: Number of chunks created
+        avgChunkSize:
+          type: number
+          description: Average token count per chunk
+        message:
+          type: string
+          description: Additional information about the chunking process
+
+    EmbedRequest:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Cohere model to use for embeddings (default: embed-english-v3.0)
+          default: "embed-english-v3.0"
+          enum: ["embed-english-v3.0", "embed-multilingual-v3.0"]
+        batchSize:
+          type: integer
+          description: Number of chunks to process in each API call (default: 10)
+          default: 10
+          minimum: 1
+          maximum: 96
+        chunksPath:
+          type: string
+          description: Path to the text chunks (default: data/chunks/)
+          default: "data/chunks/"
+
+    EmbedResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the embedding was successful
+        embeddingsCreated:
+          type: integer
+          description: Number of embeddings created
+        totalTokens:
+          type: integer
+          description: Total number of tokens processed
+        message:
+          type: string
+          description: Additional information about the embedding process
+
+    UploadRequest:
+      type: object
+      properties:
+        collectionName:
+          type: string
+          description: Name of the Qdrant collection (default: book_content_chunks)
+          default: "book_content_chunks"
+        batchSize:
+          type: integer
+          description: Number of vectors to upload in each batch (default: 100)
+          default: 100
+          minimum: 1
+          maximum: 200
+        embeddingsPath:
+          type: string
+          description: Path to the embeddings data (default: data/embeddings/)
+          default: "data/embeddings/"
+
+    UploadResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the upload was successful
+        vectorsUploaded:
+          type: integer
+          description: Number of vectors uploaded to Qdrant
+        message:
+          type: string
+          description: Additional information about the upload process
+
+    ValidationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the validation passed
+        totalPages:
+          type: integer
+          description: Number of pages crawled
+        totalChunks:
+          type: integer
+          description: Number of text chunks created
+        totalVectors:
+          type: integer
+          description: Number of vectors stored in Qdrant
+        metadataIntegrity:
+          type: boolean
+          description: Whether metadata integrity checks passed
+        emptyChunks:
+          type: integer
+          description: Number of empty chunks found (should be 0)
+        issues:
+          type: array
+          items:
+            type: string
+          description: List of any issues found during validation
+
+    StatusResponse:
+      type: object
+      properties:
+        pipelineStatus:
+          type: string
+          enum: [idle, crawling, cleaning, chunking, embedding, uploading, completed, failed]
+          description: Current status of the pipeline
+        currentStep:
+          type: string
+          description: Current step being executed
+        progress:
+          type: number
+          description: Progress percentage (0-100)
+        startedAt:
+          type: string
+          format: date-time
+          description: When the pipeline was started
+        completedAt:
+          type: string
+          format: date-time
+          description: When the pipeline was completed (null if not finished)
+
+tags:
+  - name: Pipeline
+    description: Core pipeline operations for crawling, cleaning, chunking, embedding, and storing book content

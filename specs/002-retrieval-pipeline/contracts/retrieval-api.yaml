@@ -1,0 +1,137 @@
+# Retrieval Pipeline API Contract
+
+## Overview
+This contract defines the interface for the retrieval pipeline that queries the Qdrant vector database using semantic similarity search.
+
+## Query Endpoint
+
+### POST /api/retrieve
+Initiates a semantic search query against the vector database.
+
+#### Request
+```json
+{
+  "query": "Natural language query text",
+  "top_k": 3,
+  "filters": {
+    "url": "https://example.com/page",
+    "section": "Chapter 1"
+  }
+}
+```
+
+#### Response
+```json
+{
+  "query": "Natural language query text",
+  "chunks": [
+    {
+      "id": "chunk_001",
+      "text": "Original text content from the book",
+      "url": "https://example.com/source-page",
+      "section_hierarchy": ["Chapter 1", "Section 1.1"],
+      "chunk_id": "c1s1-001"
+    }
+  ],
+  "scores": [0.85, 0.72, 0.68],
+  "retrieval_time_ms": 245.3,
+  "total_results": 3
+}
+```
+
+#### Request Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Natural language query text",
+      "minLength": 1
+    },
+    "top_k": {
+      "type": "integer",
+      "description": "Number of results to return",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 3
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Filter by source URL"
+        },
+        "section": {
+          "type": "string",
+          "description": "Filter by section or heading"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["query"]
+}
+```
+
+#### Response Schema
+```json
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The original query text"
+    },
+    "chunks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "text": {"type": "string"},
+          "url": {"type": "string"},
+          "section_hierarchy": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "chunk_id": {"type": "string"}
+        },
+        "required": ["id", "text", "url", "section_hierarchy", "chunk_id"]
+      }
+    },
+    "scores": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "retrieval_time_ms": {
+      "type": "number",
+      "description": "Time taken for retrieval in milliseconds"
+    },
+    "total_results": {
+      "type": "integer",
+      "description": "Total number of results found"
+    }
+  },
+  "required": ["query", "chunks", "scores", "retrieval_time_ms", "total_results"]
+}
+```
+
+## Test Interface
+
+### CLI Arguments
+The system also supports a command-line interface with the following arguments:
+
+- `--query`: The natural language query text
+- `--top-k`: Number of results to return (default: 3)
+- `--filter-url`: Filter results by source URL
+- `--filter-section`: Filter results by section
+- `--run-tests`: Execute the test suite with 10 predefined queries
+
+### CLI Output Format
+The CLI outputs the same JSON structure as the API endpoint.

@@ -1,0 +1,202 @@
+/* Section Container */
+.features {
+  padding: 4rem 2rem;
+  width: 100%;
+  background-color: #0d0115; /* Deep dark purple background */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background gradient effect */
+.features::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(156, 39, 176, 0.08) 0%, transparent 60%);
+  animation: rotate 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.container {
+  max-width: 1400px; /* Increased max-width to fit 4 cards comfortably */
+  margin: 0 auto;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.sectionUnderline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+  margin: 0 auto;
+}
+
+/* Card Grid */
+.featuresRow {
+  display: grid;
+  /* Force 4 columns on large screens */
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+/* Individual Card */
+.featureCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 215, 0, 0.4); /* Gold border on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 
+              0 0 15px rgba(255, 215, 0, 0.1); /* Subtle gold glow */
+}
+
+.cardLink {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  color: inherit;
+}
+
+.cardLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* SVG Icon Area */
+.featureSvgContainer {
+  height: 140px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover .featureSvgContainer {
+  transform: scale(1.02);
+}
+
+.featureSvg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Content */
+.featureContent {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.featureCard:hover .featureTitle {
+  color: #FFD700;
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  color: #d1c4e9;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Footer / Action */
+.cardFooter {
+  margin-top: auto;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+.readMore {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.featureCard:hover .readMore {
+  transform: translateX(5px);
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .featuresRow {
+    grid-template-columns: repeat(2, 1fr); /* 2x2 on medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .featuresRow {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}

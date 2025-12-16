@@ -1,0 +1,163 @@
+/* Hero Section */
+.heroBanner {
+  padding: 4rem 2rem;
+  /* Deep dark purple/blue background with a subtle radial glow */
+  background: radial-gradient(circle at center, #1a0f2e 0%, #0d0115 100%),
+              url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C27B0' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4v-4H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed; /* Keep background fixed during scroll */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full screen height */
+  overflow: hidden;
+  color: #fff;
+}
+
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered */
+  max-width: var(--ifm-container-width);
+  width: 100%;
+  gap: 4rem;
+}
+
+/* Left Column: Text Content */
+.heroContent {
+  flex: 1;
+  text-align: left;
+  z-index: 1;
+  animation: fadeInUpHero 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInUpHero {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff; /* Explicit white for dark bg */
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #e1bee7; /* Light purple for subtitle */
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.heroDescription {
+    font-size: 1.1rem;
+    color: #d1c4e9; /* Lighter purple for description */
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.buttonHero {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #FFD700; /* Golden border */
+    background: transparent;
+    color: #FFD700; /* Golden text */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); /* Sun-like glow */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.buttonHero:hover {
+    transform: translateY(-2px);
+    background: #FFD700;
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4); /* Intense sun glow on hover */
+    text-decoration: none;
+}
+
+/* Right Column: Image */
+.heroImageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 600px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Strong shadow for depth */
+  transform: perspective(1000px) rotateY(-5deg); /* Slight 3D effect */
+  transition: transform 0.3s ease;
+}
+
+.heroImage:hover {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem 1rem; /* Reduce padding on mobile */
+    min-height: auto; /* Allow height to adjust to content */
+    height: 100vh; /* Still aim for full viewport but allow flex */
+  }
+
+  .heroContainer {
+    flex-direction: column; /* Stack vertically */
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .heroContent {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 2rem; /* Smaller font for mobile */
+    margin-bottom: 1rem;
+  }
+
+  .heroDescription {
+      font-size: 1rem;
+      max-width: 100%;
+      margin-bottom: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column; /* Stack buttons if there are multiple, though we have one now */
+    width: 100%;
+    align-items: center;
+  }
+
+  .buttonHero {
+    font-size: 0.9rem; /* Smaller font for mobile */
+    padding: 0.7rem 1.5rem; /* Adjust padding for smaller screens */
+    width: auto; /* Allow button to size based on content */
+    max-width: 90%; /* Prevent it from being too wide */
+  }
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background Grid -->
+  <path d="M8 56h48M16 56l8-16M48 56l-8-16M8 56l16-32M56 56l-16-32" stroke="#9C27B0" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Wireframe Cube -->
+  <path d="M32 16l14 8v16l-14 8-14-8V24z" fill="none" stroke="#FFD700" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M32 16v16l14 8M32 32l-14 8" stroke="#FFD700" stroke-width="2" stroke-linejoin="round"/>
+  
+  <!-- Inner Data Points -->
+  <circle cx="32" cy="32" r="3" fill="#FFF"/>
+  <circle cx="25" cy="28" r="1.5" fill="#9C27B0"/>
+  <circle cx="39" cy="28" r="1.5" fill="#9C27B0"/>
+  <circle cx="32" cy="24" r="1.5" fill="#9C27B0"/>
+  
+  <!-- Scanning Line -->
+  <path d="M18 24h28" stroke="#FFF" stroke-width="1" opacity="0.5">
+    <animate attributeName="y1" from="16" to="48" dur="2s" repeatCount="indefinite" />
+    <animate attributeName="y2" from="16" to="48" dur="2s" repeatCount="indefinite" />
+  </path>
+</svg>

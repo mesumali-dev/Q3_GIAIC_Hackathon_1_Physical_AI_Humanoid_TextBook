@@ -1,0 +1,31 @@
+# See https://www.npmjs.com/package/npmignore for more details.
+
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+*.log*
+
+# Environment variables
+.env*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.swp
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

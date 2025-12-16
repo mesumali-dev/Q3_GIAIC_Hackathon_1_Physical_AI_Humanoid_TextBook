@@ -1,0 +1,308 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+:root {
+  /* Purple Palette */
+  --ifm-color-primary: #9c27b0;
+  --ifm-color-primary-dark: #8a229d;
+  --ifm-color-primary-darker: #812093;
+  --ifm-color-primary-darkest: #6a1a7a;
+  --ifm-color-primary-light: #ae3ec1;
+  --ifm-color-primary-lighter: #b64bc7;
+  --ifm-color-primary-lightest: #c86dd6;
+  --ifm-color-primary-contrast-background: #f8eafc;
+  --ifm-color-primary-contrast-foreground: #4a1254;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* New Color Palette - Light Mode */
+  --sidebar-bg-color: #f3e5f5; /* Light purple background */
+  --sidebar-text-color: #4a148c; /* Dark purple text */
+  --sidebar-accent-color: #ab47bc; /* Purple accent */
+  --sidebar-hover-bg: #e1bee7; /* Lighter hover background */
+  --sidebar-active-bg: #ab47bc; /* Active background */
+  --sidebar-active-text: #ffffff; /* White text for active */
+  --sidebar-border-color: #e1bee7; /* Light border */
+  --sidebar-shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Mode */
+[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* New Color Palette - Dark Mode - Deep Purple */
+  --ifm-background-color: #120a1f; /* Deep dark purple background */
+  --ifm-font-color-base: #e1bee7; /* Light purple text */
+  
+  --sidebar-bg-color: #1a0f2e; /* Darker purple sidebar */
+  --sidebar-text-color: #e1bee7; /* Light text */
+  --sidebar-accent-color: #d1c4e9; /* Lighter purple accent */
+  --sidebar-hover-bg: #311b5e; /* Dark hover */
+  --sidebar-active-bg: #7b1fa2; /* Deep purple active */
+  --sidebar-active-text: #ffffff;
+  --sidebar-border-color: #311b5e;
+  --sidebar-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/*
+ * ============================================================================
+ * General Styles
+ * ============================================================================
+ */
+
+.footer {
+  border-top: 1px solid var(--sidebar-border-color);
+  background-color: var(--sidebar-bg-color);
+  box-shadow: 0 2px 10px var(--sidebar-shadow-color);
+}
+
+/*
+ * ============================================================================
+ * Navbar Styles
+ * ============================================================================
+ */
+
+.navbar {
+  background: rgba(13, 1, 21, 0.85); /* Deep dark purple with transparency */
+  backdrop-filter: blur(12px); /* Glassmorphism effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  height: 4rem; /* Slightly taller navbar */
+  transition: all 0.3s ease;
+  position: sticky; /* Ensure it stays at the top */
+  top: 0; /* Align to the top */
+  z-index: 100; /* Lower than sidebar's z-index */
+}
+
+.navbar__brand {
+  font-weight: 800;
+  color: #fff !important; /* Force white title */
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-right: 2rem;
+}
+
+.navbar__brand:hover {
+  color: #FFD700 !important; /* Gold hover */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.navbar__item {
+  color: #d1c4e9; /* Light purple text */
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin: 0 0.2rem;
+}
+
+.navbar__item:hover, 
+.navbar__link:hover {
+  color: #FFD700; /* Gold text */
+  background: rgba(255, 215, 0, 0.1);
+  text-decoration: none;
+}
+
+.navbar__link--active {
+  color: #FFD700 !important;
+  font-weight: 700;
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Logo styling */
+.navbar__logo {
+  height: 2.2rem;
+  transition: transform 0.3s ease;
+}
+
+.navbar__brand:hover .navbar__logo {
+  transform: rotate(10deg) scale(1.1);
+}
+
+/* Mobile Toggle */
+.navbar__toggle {
+  color: #fff;
+}
+
+/* Hide scrollbar but keep functionality if items overflow */
+.navbar__items {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/*
+ * ============================================================================
+ * Custom Sidebar Styles
+ * ============================================================================
+ */
+
+/* Left Sidebar container - Desktop */
+.menu {
+  padding: 1.5rem 1rem;
+  background-color: var(--sidebar-bg-color);
+  border-right: 1px solid var(--sidebar-border-color);
+  box-shadow: 2px 0 15px var(--sidebar-shadow-color);
+  border-radius: 0 10px 10px 0;
+  /* Ensure it's always visible on desktop */
+  display: block; 
+}
+
+/* All links in the sidebar */
+.menu__link {
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-weight: 500;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 0.3rem;
+  color: var(--sidebar-text-color);
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main topics (top-level links) */
+.menu__list > .menu__list-item > .menu__link {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sidebar-text-color);
+  margin-bottom: 0.7rem;
+  border-bottom: 1px solid var(--sidebar-border-color);
+  padding-bottom: 0.7rem;
+}
+
+/* Sub-headings (nested links) */
+.menu__list-item .menu__list-item > .menu__link {
+  font-size: 0.95rem;
+  padding-left: 2rem;
+  color: var(--sidebar-text-color);
+}
+
+/* Hover effect for all links */
+.menu__link:hover {
+  background-color: var(--sidebar-hover-bg);
+  color: var(--sidebar-accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--sidebar-shadow-color);
+}
+
+/* Active link styling */
+.menu__link--active {
+  color: var(--sidebar-active-text);
+  background-color: var(--sidebar-active-bg);
+  border-left: 6px solid var(--sidebar-accent-color);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  border-radius: 0 8px 8px 0;
+}
+
+.menu__list-item--collapsed .menu__link--active {
+    background-color: transparent;
+    color: var(--sidebar-active-text);
+    box-shadow: none;
+    border-left-color: transparent;
+}
+
+/* ============================================================================
+ * Responsive Sidebar Adjustments (Mobile/Tablet)
+ * ============================================================================ */
+
+@media screen and (max-width: 996px) {
+  /* Ensure the sidebar container is properly hidden/shown and styled */
+  .docSidebarContainer { /* This is the most common Docusaurus mobile sidebar container class */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 300px;
+    z-index: 10000; /* Very high z-index to ensure it's on top of navbar */
+    background-color: var(--sidebar-bg-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+    box-shadow: 2px 0 15px var(--sidebar-shadow-color);
+    border-right: 1px solid var(--sidebar-border-color);
+    display: block !important; /* Ensure it's not hidden by other rules */
+  }
+
+  html[data-theme='dark'] .docSidebarContainer {
+    background-color: #1a0f2e; /* Dark mode background for off-canvas */
+  }
+
+  /* When the sidebar is shown */
+  html.sidebar--expanded .docSidebarContainer { 
+    transform: translateX(0%);
+  }
+
+  /* Overlay that appears when mobile sidebar is open */
+  html.sidebar--expanded .docSidebarContainer::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1; /* Behind the sidebar, but above content */
+  }
+
+  /* Adjust menu padding for mobile */
+  .menu {
+    border-radius: 0;
+    box-shadow: none;
+    padding-top: 4rem; /* Space for fixed navbar */
+    height: 100%;
+    overflow-y: auto;
+    background-color: transparent; /* Let .docSidebarContainer handle bg */
+  }
+
+  .main-wrapper {
+    /* Prevent main content from showing over sidebar when sidebar is open */
+    overflow: hidden;
+  }
+}
+
+/*
+ * ============================================================================
+ * Right Sidebar (Table of Contents) Styles
+ * ============================================================================
+ */
+
+.theme-doc-toc-desktop {
+  background-color: var(--sidebar-bg-color);
+  padding: 1.8rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: -2px 0 15px var(--sidebar-shadow-color);
+}
+
+.theme-doc-toc-desktop .toc-heading {
+  color: var(--sidebar-text-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+}
+
+.theme-doc-toc-desktop .table-of-contents a {
+  color: var(--sidebar-text-color);
+  transition: color 0.3s ease;
+  padding: 0.3rem 0;
+  display: block;
+}
+
+.theme-doc-toc-desktop .table-of-contents a:hover {
+  color: var(--sidebar-accent-color);
+  transform: translateX(3px);
+}
+
+.theme-doc-toc-desktop .table-of-contents .toc-link--active {
+  color: var(--sidebar-accent-color);
+  font-weight: 600;
+}

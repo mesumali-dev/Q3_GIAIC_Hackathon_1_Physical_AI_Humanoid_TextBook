@@ -1,0 +1,76 @@
+---
+title: "Vision-Language-Action (VLA) Models in Robotics"
+summary: "Explore the cutting-edge of AI in robotics with models that can understand natural language, see the world, and take action."
+tags: [vla, vision-language-action, ai, robotics, large-language-models]
+keywords: [vision-language-action, vla, ai, robotics, large-language-models, llm, multimodal, embodiment]
+learningObjectives:
+  - "Understand what a Vision-Language-Action (VLA) model is."
+  - "Learn how VLAs can be used to control robots with natural language."
+  - "Be introduced to the challenges of grounding language in the real world."
+prerequisites: ["Perception Algorithms", "Reinforcement Learning for Robotics"]
+outcome: "Readers will be familiar with the state-of-the-art in AI for robotics and understand the potential of VLAs to revolutionize how we interact with robots."
+successCriteria:
+  - "Explain the three components of a VLA model."
+  - "Give an example of a natural language command that could be given to a VLA-powered robot."
+  - "Describe the 'grounding' problem in the context of VLAs."
+toolsUsed: [Python, TensorFlow/PyTorch]
+relatedConcepts: [large-language-models, natural-language-processing, computer-vision, embodied-ai]
+---
+import Prerequisites from '@site/src/components/Prerequisites';
+import LearningObjective from '@site/src/components/LearningObjective';
+import Outcome from '@site/src/components/Outcome';
+import SuccessCriteria from '@site/src/components/SuccessCriteria';
+import Exercise from '@site/src/components/Exercise';
+import Checkpoint from '@site/src/components/Checkpoint';
+
+# Chapter 3: Vision-Language-Action (VLA) Models in Robotics
+
+This chapter explores the use of Vision-Language-Action (VLA) models in robotics.
+
+<Prerequisites>
+  <p>You should have a basic understanding of deep learning, computer vision, and natural language processing.</p>
+</Prerequisites>
+
+<LearningObjective>
+  <ul>
+    <li>Understand what a Vision-Language-Action (VLA) model is.</li>
+    <li>Learn how VLAs can be used to control robots with natural language.</li>
+    <li>Be introduced to the challenges of grounding language in the real world.</li>
+  </ul>
+</LearningObjective>
+
+## What are VLAs?
+
+**Vision-Language-Action (VLA)** models are a new frontier in artificial intelligence. They are large-scale models, similar to the Large Language Models (LLMs) that power chatbots, but with a crucial difference: they are multimodal and embodied.
+
+-   **Vision:** VLAs can take images or video streams as input, allowing them to "see" the world.
+-   **Language:** They can understand and generate natural language, enabling them to communicate with humans.
+-   **Action:** They can output actions to control a robot, such as motor commands.
+
+## Natural Language Control of Robots
+
+VLAs open up the exciting possibility of controlling robots with simple, natural language commands. Instead of writing complex code, you could just tell a robot, "Please pick up the red ball and put it in the blue box." The VLA would then be responsible for parsing this command, identifying the red ball and the blue box in its camera feed, and generating the sequence of motor commands to execute the task.
+
+## The Grounding Problem
+
+One of the biggest challenges in developing VLAs is the **grounding problem**. This is the problem of connecting the symbols of language (like the word "red") to the real world (the actual color red as perceived by a camera). For a VLA to be effective, it must learn to ground language in its sensory experience of the world.
+
+<Checkpoint>
+  <p>What makes a VLA different from a standard Large Language Model (LLM)?</p>
+</Checkpoint>
+
+<Exercise>
+  <p>Read a recent research paper on a Vision-Language-Action model. What was the main contribution of the paper? What task was the model able to perform? What were the limitations of the model?</p>
+</Exercise>
+
+<Outcome>
+  <p>You are now familiar with the cutting-edge of AI research in robotics. You can appreciate the immense potential of VLAs to create more intelligent, capable, and user-friendly robots.</p>
+</Outcome>
+
+<SuccessCriteria>
+  <ul>
+    <li>Explain the three components of a VLA model.</li>
+    <li>Give an example of a natural language command that could be given to a VLA-powered robot.</li>
+    <li>Describe the 'grounding' problem in the context of VLAs.</li>
+  </ul>
+</SuccessCriteria>

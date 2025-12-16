@@ -1,0 +1,72 @@
+---
+title: "Basic Robot Control"
+summary: "Learn how to make your robot move! This chapter covers teleoperation (manual control) and simple autonomous movements."
+tags: [robot-control, teleoperation, ros2, robotics]
+keywords: [robot, control, teleoperation, joystick, keyboard, velocity, cmd_vel, twist]
+learningObjectives:
+  - "Understand the concept of robot teleoperation."
+  - "Learn how to control a robot using a keyboard or joystick."
+  - "Be able to write a simple ROS 2 node to make a robot move autonomously."
+prerequisites: ["Gazebo Simulation Fundamentals"]
+outcome: "Readers will be able to control a simulated robot both manually and with a simple autonomous script."
+successCriteria:
+  - "Drive a simulated robot around in Gazebo using a keyboard teleoperation node."
+  - "Write a Python script that makes the robot drive in a square."
+  - "Explain the structure of a `Twist` message."
+toolsUsed: [ROS 2, Gazebo]
+relatedConcepts: [robot-kinematics, velocity-control, control-theory, teleoperation]
+---
+import Prerequisites from '@site/src/components/Prerequisites';
+import LearningObjective from '@site/src/components/LearningObjective';
+import Outcome from '@site/src/components/Outcome';
+import SuccessCriteria from '@site/src/components/SuccessCriteria';
+import Exercise from '@site/src/components/Exercise';
+import Checkpoint from '@site/src/components/Checkpoint';
+
+# Chapter 4: Basic Robot Control
+
+This chapter will cover basic robot control techniques, including teleoperation and simple movements.
+
+<Prerequisites>
+  <p>You should have a simulated robot running in Gazebo and be comfortable with basic ROS 2 concepts.</p>
+</Prerequisites>
+
+<LearningObjective>
+  <ul>
+    <li>Understand the concept of robot teleoperation.</li>
+    <li>Learn how to control a robot using a keyboard or joystick.</li>
+    <li>Be able to write a simple ROS 2 node to make a robot move autonomously.</li>
+  </ul>
+</LearningObjective>
+
+## Teleoperation
+
+**Teleoperation** is the process of controlling a robot from a distance. In ROS 2, this is typically done by running a teleoperation node that reads input from a keyboard, joystick, or other device and publishes velocity commands to a topic.
+
+The standard topic for velocity commands is `/cmd_vel`, and the message type is `geometry_msgs/msg/Twist`. A `Twist` message contains two vectors: `linear` (for x, y, z velocity) and `angular` (for roll, pitch, yaw velocity).
+
+## Simple Autonomous Movement
+
+To make a robot move on its own, you can write a ROS 2 node that publishes `Twist` messages to the `/cmd_vel` topic. By controlling the linear and angular velocities over time, you can make the robot follow a specific path.
+
+For example, to make a robot drive in a straight line, you would publish a `Twist` message with a constant positive `linear.x` value and zero for all other values. To make it turn, you would publish a message with a positive or negative `angular.z` value.
+
+<Checkpoint>
+  <p>What is the name and message type of the standard ROS 2 topic for robot velocity commands?</p>
+</Checkpoint>
+
+<Exercise>
+  <p>Write a ROS 2 Python node that makes your simulated robot drive in a circle. You will need to publish a `Twist` message with a constant `linear.x` and a constant `angular.z`.</p>
+</Exercise>
+
+<Outcome>
+  <p>You can now make a robot move! This is a fundamental skill that you will build upon in the coming chapters.</p>
+</Outcome>
+
+<SuccessCriteria>
+  <ul>
+    <li>Drive a simulated robot around in Gazebo using a keyboard teleoperation node.</li>
+    <li>Write a Python script that makes the robot drive in a square.</li>
+    <li>Explain the structure of a `Twist` message.</li>
+  </ul>
+</SuccessCriteria>

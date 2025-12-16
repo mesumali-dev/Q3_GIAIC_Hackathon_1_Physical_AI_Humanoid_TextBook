@@ -1,0 +1,77 @@
+---
+title: "Introduction to Inverse Kinematics (IK)"
+summary: "Learn how to control the position of a robot's end-effector by calculating the required joint angles using Inverse Kinematics."
+tags: [inverse-kinematics, ik, manipulation, ros2, moveit]
+keywords: [inverse-kinematics, ik, manipulation, robot-arm, forward-kinematics, jacobian, moveit, ros]
+learningObjectives:
+  - "Understand the difference between forward and inverse kinematics."
+  - "Learn the challenges of solving the IK problem."
+  - "Be introduced to MoveIt, the motion planning framework for ROS."
+prerequisites: ["Robot Modeling"]
+outcome: "Readers will have a conceptual understanding of how to control the pose of a robot manipulator."
+successCriteria:
+  - "Explain what the 'end-effector' of a robot arm is."
+  - "Describe why the IK problem can have multiple solutions."
+  - "Use MoveIt to plan and execute a simple trajectory for a robot arm in RViz."
+toolsUsed: [ROS 2, MoveIt, RViz]
+relatedConcepts: [robot-kinematics, jacobian-matrix, optimization, motion-planning]
+---
+import Prerequisites from '@site/src/components/Prerequisites';
+import LearningObjective from '@site/src/components/LearningObjective';
+import Outcome from '@site/src/components/Outcome';
+import SuccessCriteria from '@site/src/components/SuccessCriteria';
+import Exercise from '@site/src/components/Exercise';
+import Checkpoint from '@site/src/components/Checkpoint';
+
+# Chapter 4: Introduction to Inverse Kinematics (IK)
+
+This chapter provides an introduction to Inverse Kinematics (IK) for robot arms and manipulators.
+
+<Prerequisites>
+  <p>You should have a good understanding of robot modeling, including links and joints.</p>
+</Prerequisites>
+
+<LearningObjective>
+  <ul>
+    <li>Understand the difference between forward and inverse kinematics.</li>
+    <li>Learn the challenges of solving the IK problem.</li>
+    <li>Be introduced to MoveIt, the motion planning framework for ROS.</li>
+  </ul>
+</LearningObjective>
+
+## Forward vs. Inverse Kinematics
+
+-   **Forward Kinematics (FK):** If you know the angles of all the joints in a robot arm, what is the position and orientation of the end-effector (the hand or tool)? This is the "easy" problem.
+-   **Inverse Kinematics (IK):** If you want the end-effector to be at a specific position and orientation, what are the required angles for each of the joints? This is the "hard" problem.
+
+The IK problem is more difficult because it often has multiple solutions (or no solution at all). For example, you can touch your nose with your elbow pointing up or down. These are two different solutions to the IK problem for your arm.
+
+## MoveIt: The Motion Planning Framework
+
+**MoveIt** is a powerful and widely used motion planning framework for ROS. It takes the complexity out of IK and motion planning, allowing you to command a robot arm to move to a specific pose without having to solve the IK problem yourself.
+
+MoveIt provides a set of tools for:
+
+-   **Inverse Kinematics:** Finding joint configurations for a desired end-effector pose.
+-   **Motion Planning:** Finding a collision-free path for the arm to move from its current configuration to a goal configuration.
+-   **3D Perception:** Using sensor data to build a representation of the environment for collision avoidance.
+
+<Checkpoint>
+  <p>Why is Inverse Kinematics considered a "hard" problem compared to Forward Kinematics?</p>
+</Checkpoint>
+
+<Exercise>
+  <p>Work through the MoveIt tutorials. Launch the MoveIt setup for a demo robot arm in RViz. Use the interactive markers to drag the end-effector to a new pose and visualize the planned trajectory.</p>
+</Exercise>
+
+<Outcome>
+  <p>You now understand the fundamental concepts behind controlling robot arms and manipulators. You are ready to start building applications that can interact with the world in a more sophisticated way.</p>
+</Outcome>
+
+<SuccessCriteria>
+  <ul>
+    <li>Explain what the 'end-effector' of a robot arm is.</li>
+    <li>Describe why the IK problem can have multiple solutions.</li>
+    <li>Use MoveIt to plan and execute a simple trajectory for a robot arm in RViz.</li>
+  </ul>
+</SuccessCriteria>

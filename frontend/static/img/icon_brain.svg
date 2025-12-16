@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Brain Outline -->
+  <path d="M32 54c-4 0-8-2-10-6-3 0-6-3-6-7 0-3 2-6 2-6s-2-2-2-6c0-5 4-9 9-9 1-5 5-9 10-9s9 4 10 9c5 0 9 4 9 9 0 4-2 6-2 6s2 3 2 6c0 4-3 7-6 7-2 4-6 6-10 6z" 
+        fill="none" stroke="#9C27B0" stroke-width="2"/>
+        
+  <!-- Neural Connections -->
+  <circle cx="32" cy="28" r="3" fill="#FFD700"/>
+  <circle cx="22" cy="36" r="2.5" fill="#FFD700"/>
+  <circle cx="42" cy="36" r="2.5" fill="#FFD700"/>
+  <circle cx="28" cy="46" r="2" fill="#FFD700"/>
+  <circle cx="36" cy="46" r="2" fill="#FFD700"/>
+  
+  <!-- Lines -->
+  <path d="M32 28l-10 8M32 28l10 8M32 28l-4 18M32 28l4 18M22 36l6 10M42 36l-6 10" 
+        stroke="#FFD700" stroke-width="1.5" opacity="0.8"/>
+        
+  <!-- Pulse Effect -->
+  <circle cx="32" cy="28" r="6" fill="none" stroke="#FFF" stroke-width="0.5" opacity="0.5"/>
+</svg>

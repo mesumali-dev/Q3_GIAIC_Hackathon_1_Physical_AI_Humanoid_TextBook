@@ -1,0 +1,63 @@
+---
+title: "Glossary"
+---
+
+# Glossary
+
+This glossary provides definitions for key terms used in this textbook.
+
+-   **Action:** In Reinforcement Learning, a decision made by the agent.
+-   **Agent:** In Reinforcement Learning, the learner or decision-maker.
+-   **Costmap:** A grid-based representation of the environment used for navigation, where each cell has a value representing the "cost" of traveling through it.
+-   **D* Lite:** An incremental search algorithm used for path planning in dynamic environments.
+-   **Domain Randomization:** A technique for Sim2Real transfer that involves randomizing the parameters of the simulation to make the learned policy more robust.
+-   **Embodied Intelligence:** The idea that intelligence is deeply intertwined with physical experience.
+-   **End-Effector:** The hand, gripper, or tool at the end of a robot arm.
+-   **Environment:** In Reinforcement Learning, the world that the agent interacts with.
+-   **Exploration:** The task of autonomously exploring an unknown environment to build a map.
+-   **Forward Kinematics (FK):** The problem of calculating the position and orientation of the end-effector given the joint angles of a robot arm.
+-   **Gazebo:** A 3D robotics simulator.
+-   **Global Planner:** A path planner that creates a long-term plan from the robot's current location to a goal.
+-   **Grasping:** The act of picking up an object with a robot's gripper.
+-   **Gripper:** The device at the end of a robot arm used for grasping objects.
+-   **Grounding Problem:** The problem of connecting the symbols of language to the real world.
+-   **Human-Robot Interaction (HRI):** A field of study dedicated to understanding, designing, and evaluating robotic systems for use by or with humans.
+-   **IMU (Inertial Measurement Unit):** A sensor that measures a robot's orientation, angular velocity, and linear acceleration.
+-   **Inverse Kinematics (IK):** The problem of calculating the required joint angles to achieve a desired position and orientation of the end-effector.
+-   **Joint:** A connection between two links in a robot that allows for motion.
+-   **LiDAR (Light Detection and Ranging):** A sensor that measures distances by emitting laser beams.
+-   **Link:** A rigid part of a robot.
+-   **Local Planner:** A path planner that is responsible for executing a global plan while reacting to immediate obstacles.
+-   **Localization:** The problem of determining a robot's position in the world.
+-   **Long-Term Autonomy:** The ability of a robot to operate for extended periods of time without human intervention.
+-   **Manipulation:** The act of using a robot arm to interact with objects.
+-   **Mapping:** The problem of creating a map of the environment.
+-   **MoveIt:** A motion planning framework for ROS.
+-   **Multi-Robot Coordination:** The problem of getting a team of robots to work together effectively.
+-   **Nav2:** The navigation stack in ROS 2.
+-   **Node:** The smallest unit of execution in ROS 2.
+-   **Object Detection:** A computer vision task that involves identifying the presence and location of objects in an image.
+-   **Path Planning:** The problem of finding a path for a robot to move from a start location to a goal location.
+-   **Perception:** The process of taking raw sensor data and transforming it into a more meaningful representation of the environment.
+-   **Physical AI:** A field of AI focused on creating agents that can interact with the physical world.
+-   **Pick-and-Place:** A common robotics task that involves picking up an object and placing it at a different location.
+-   **Policy:** In Reinforcement Learning, a mapping from states to actions.
+-   **Q-Learning:** A model-free reinforcement learning algorithm.
+-   **Reality Gap:** The differences between a simulation and the real world.
+-   **Reinforcement Learning (RL):** A paradigm of machine learning where an agent learns to make decisions by interacting with an environment.
+-   **Reward:** In Reinforcement Learning, a signal from the environment that indicates how well the agent is doing.
+-   **ROS (Robot Operating System):** A framework for robotics software development.
+-   **RViz:** A 3D visualization tool for ROS.
+-   **SDF (Simulation Description Format):** An XML-based format for describing simulation worlds.
+-   **Semantic Segmentation:** A computer vision task that involves assigning a class label to every pixel in an image.
+-   **Service:** A request-response communication mechanism in ROS.
+-   **Sim2Real:** The process of transferring policies and models learned in simulation to real hardware.
+-   **SLAM (Simultaneous Localization and Mapping):** A set of algorithms that allows a robot to build a map of its environment while simultaneously tracking its own position within that map.
+-   **State:** In Reinforcement Learning, a representation of the current situation of the agent and the environment.
+-   **System Identification:** A technique for Sim2Real transfer that involves creating a more accurate simulation model by measuring the properties of the real robot.
+-   **Teleoperation:** The process of controlling a robot from a distance.
+-   **Topic:** A publish-subscribe communication mechanism in ROS.
+-   **Twist:** A message type in ROS used for sending velocity commands.
+-   **URDF (Unified Robot Description Format):** An XML-based format for describing the kinematics and dynamics of a robot.
+-   **Vision-Language-Action (VLA) Model:** A multimodal AI model that can understand vision, language, and action.
+-   **World:** In Gazebo, a file that defines the simulation environment.

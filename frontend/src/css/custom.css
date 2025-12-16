@@ -1,0 +1,60 @@
+@import './footer.css';
+
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+:root {
+  /* Purple Palette */
+  --ifm-color-primary: #9c27b0;
+  --ifm-color-primary-dark: #8a229d;
+  --ifm-color-primary-darker: #812093;
+  --ifm-color-primary-darkest: #6a1a7a;
+  --ifm-color-primary-light: #ae3ec1;
+  --ifm-color-primary-lighter: #b64bc7;
+  --ifm-color-primary-lightest: #c86dd6;
+  --ifm-color-primary-contrast-background: #f8eafc;
+  --ifm-color-primary-contrast-foreground: #4a1254;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* New Color Palette - Light Mode */
+  --sidebar-bg-color: #f3e5f5; /* Light purple background */
+  --sidebar-text-color: #4a148c; /* Dark purple text */
+  --sidebar-accent-color: #ab47bc; /* Purple accent */
+  --sidebar-hover-bg: #e1bee7; /* Lighter hover background */
+  --sidebar-active-bg: #ab47bc; /* Active background */
+  --sidebar-active-text: #ffffff; /* White text for active */
+  --sidebar-border-color: #e1bee7; /* Light border */
+  --sidebar-shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Mode */
+[data-theme='dark'] {
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* New Color Palette - Dark Mode - Deep Purple */
+  --ifm-background-color: #120a1f; /* Deep dark purple background */
+  --ifm-font-color-base: #e1bee7; /* Light purple text */
+  
+  --sidebar-bg-color: #1a0f2e; /* Darker purple sidebar */
+  --sidebar-text-color: #e1bee7; /* Light text */
+  --sidebar-accent-color: #d1c4e9; /* Lighter purple accent */
+  --sidebar-hover-bg: #311b5e; /* Dark hover */
+  --sidebar-active-bg: #7b1fa2; /* Deep purple active */
+  --sidebar-active-text: #ffffff;
+  --sidebar-border-color: #311b5e;
+  --sidebar-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+/*
+ * ============================================================================
+ * General Styles
+ * ============================================================================
+ */
+
+
+

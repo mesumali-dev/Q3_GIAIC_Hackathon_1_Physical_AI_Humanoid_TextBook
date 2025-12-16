@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Globe/World -->
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#9C27B0" stroke-width="1.5" opacity="0.5"/>
+  <path d="M12 32h40M32 12v40" stroke="#9C27B0" stroke-width="0.5" opacity="0.3"/>
+  <ellipse cx="32" cy="32" rx="20" ry="8" fill="none" stroke="#9C27B0" stroke-width="0.5" opacity="0.3" transform="rotate(45 32 32)"/>
+  
+  <!-- Rocket -->
+  <g transform="translate(24, 24) scale(0.5)">
+    <path d="M16 2l4 8h-8l4-8z" fill="#FFD700"/>
+    <path d="M12 10h8v20h-8z" fill="#FFF"/>
+    <path d="M12 30l-4 6M20 30l4 6" stroke="#FFD700" stroke-width="4"/>
+    <circle cx="16" cy="20" r="3" fill="#9C27B0"/>
+  </g>
+  
+  <!-- Trajectory -->
+  <path d="M16 48q8 8 16 0t16-16" fill="none" stroke="#FFD700" stroke-width="1.5" stroke-dasharray="4 2"/>
+  
+  <!-- Target Points -->
+  <circle cx="48" cy="32" r="2" fill="#FFF"/>
+  <circle cx="16" cy="48" r="2" fill="#FFF"/>
+</svg>
