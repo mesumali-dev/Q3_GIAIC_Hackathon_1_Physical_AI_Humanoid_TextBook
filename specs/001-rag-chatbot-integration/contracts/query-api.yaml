@@ -1,0 +1,90 @@
+# API Contract: RAG Chatbot Integration
+
+## Query Endpoint
+
+### POST /query
+
+Submit a natural language question to the RAG agent for processing.
+
+#### Request
+```json
+{
+  "question": "What is the main concept explained in chapter 3?",
+  "contextMode": "full-book",
+  "selectedText": "Optional text that user has selected on the page"
+}
+```
+
+**Request Fields:**
+- `question` (string, required): The natural language question from the user (3-1000 characters)
+- `contextMode` (string, required): Either "full-book" or "selected-text-only"
+- `selectedText` (string, optional): Text that the user has selected on the page (required when contextMode is "selected-text-only", max 5000 characters)
+
+#### Response - Success (200 OK)
+```json
+{
+  "id": "query-12345",
+  "answer": "The main concept in chapter 3 is about the architecture patterns...",
+  "sourceCitations": [
+    {
+      "url": "/docs/chapter3/architecture",
+      "section": "Architecture Patterns",
+      "excerpt": "Architecture patterns define how different components interact...",
+      "confidence": 0.92
+    }
+  ],
+  "status": "success",
+  "queryId": "query-12345",
+  "timestamp": "2025-12-17T10:30:00Z"
+}
+```
+
+**Response Fields:**
+- `id` (string): Unique identifier for the response
+- `answer` (string): The response text from the RAG agent
+- `sourceCitations` (array): List of source citations used in the response
+- `status` (string): "success", "partial", "error", or "empty"
+- `queryId` (string): Reference to the original query
+- `timestamp` (string): ISO 8601 timestamp of response generation
+
+#### Response - Error (400 Bad Request)
+```json
+{
+  "error": "Validation failed",
+  "message": "Question is required and must be between 3 and 1000 characters",
+  "code": "VALIDATION_ERROR"
+}
+```
+
+#### Response - Server Error (500 Internal Server Error)
+```json
+{
+  "error": "Internal server error",
+  "message": "The query could not be processed at this time",
+  "code": "INTERNAL_ERROR"
+}
+```
+
+### Source Citation Object
+- `url` (string): URL of the source content in the book
+- `section` (string): Title or heading of the referenced section
+- `excerpt` (string): Relevant text excerpt from the source
+- `confidence` (number): Confidence score of the citation relevance (0-1)
+
+## CORS Configuration
+
+The API must be configured to allow requests from the Docusaurus frontend domain (GitHub Pages).
+
+### Allowed Origins
+- Production: `https://<username>.github.io` (or custom domain)
+- Development: `http://localhost:3000` (or configured dev server port)
+
+### Allowed Methods
+- `POST`
+
+### Allowed Headers
+- `Content-Type`
+- `Accept`
+
+## Authentication
+No authentication required for this endpoint as per security constraints (no API keys exposed to frontend). Backend authentication and authorization handled internally.
