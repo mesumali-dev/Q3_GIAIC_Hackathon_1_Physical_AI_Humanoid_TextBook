@@ -4,7 +4,6 @@ Qdrant client initialization and connection utilities for the RAG pipeline.
 from typing import Optional, List, Dict, Any
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
-from qdrant_client.http.exceptions import UnexpectedResponse
 from utils.logging_config import get_logger
 from utils.error_handling import handle_qdrant_errors, retry_qdrant
 from config.config import config
@@ -177,14 +176,16 @@ class QdrantClientWrapper:
             List[models.ScoredPoint]: List of similar vectors with scores
         """
         try:
-            results = self.client.search(
+            response = self.client.query_points(
                 collection_name=self.collection_name,
                 query=query_vector,
                 limit=limit,
-                query_filter=filters,
+                prefetch=[],
                 with_payload=with_payload,
-                with_vectors=with_vectors
-            )
+                with_vectors=with_vectors,
+                query_filter=filters
+                )
+            results = response.points or []
             logger.debug(f"Search returned {len(results)} results")
             return results
         except Exception as e:

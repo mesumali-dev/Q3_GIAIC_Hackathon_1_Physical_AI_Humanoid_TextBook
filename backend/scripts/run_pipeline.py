@@ -349,13 +349,28 @@ class PipelineOrchestrator:
             for ev in embedding_vectors:
                 # Create payload with metadata
                 payload = {
-                    "page_url": ev.text_chunk.page_url if ev.text_chunk else "",
-                    "heading_path": ev.text_chunk.heading_path if ev.text_chunk else "",
-                    "content_raw": ev.text_chunk.content_raw if ev.text_chunk else "",
-                    "chunk_id": ev.chunk_id,
-                    "token_count": ev.text_chunk.token_count if ev.text_chunk else 0,
-                    "position_in_page": ev.text_chunk.position_in_page if ev.text_chunk else 0
-                }
+    # 🔴 REQUIRED by QdrantRecord validator
+    "page_url": ev.text_chunk.page_url if ev.text_chunk else "",
+    "heading_path": ev.text_chunk.heading_path if ev.text_chunk else "",
+    "content_raw": ev.text_chunk.content_raw if ev.text_chunk else "",
+
+    # 🔵 Useful indexing fields
+    "chunk_id": ev.chunk_id,
+    "token_count": ev.text_chunk.token_count if ev.text_chunk else 0,
+    "position_in_page": ev.text_chunk.position_in_page if ev.text_chunk else 0,
+
+    # 🟢 Optional metadata (future RAG / UI)
+    "metadata": {
+        "text": ev.text_chunk.content_raw if ev.text_chunk else "",
+        "url": ev.text_chunk.page_url if ev.text_chunk else "",
+        "section_hierarchy": (
+            ev.text_chunk.heading_path.split(" > ")
+            if ev.text_chunk and ev.text_chunk.heading_path
+            else []
+        )
+    }
+}
+
 
                 from models.data_models import QdrantRecord
                 record = QdrantRecord(

@@ -103,10 +103,10 @@ class QdrantService:
                         must=filter_conditions
                     )
 
-            # Perform the search
-            results = self.client.search(
+            # Perform the search using query_points method (newer API)
+            results = self.client.query_points(
                 collection_name=self.collection_name,
-                query_vector=vector,
+                query=vector,
                 limit=top_k,
                 query_filter=qdrant_filters,
                 with_payload=True,

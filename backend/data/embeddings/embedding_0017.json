@@ -1,5 +1,5 @@
 {
-  "chunk_id": "4493f479-16f8-4b4b-b9b4-91a2e7f82fbc",
+  "chunk_id": "ec572ef6-4804-4806-9a2b-6c635fa0e1dd",
   "vector": [
     -0.019943237,
     -0.042816162,
@@ -1028,9 +1028,9 @@
   ],
   "model_name": "embed-english-v3.0",
   "model_version": "",
-  "created_at": "2025-12-17T01:52:02.555313",
+  "created_at": "2025-12-17T04:38:23.322325",
   "text_chunk": {
-    "chunk_id": "4493f479-16f8-4b4b-b9b4-91a2e7f82fbc",
+    "chunk_id": "ec572ef6-4804-4806-9a2b-6c635fa0e1dd",
     "page_url": "https://local-content/module1/chapter5x",
     "heading_path": "",
     "content_raw": ": - Costmaps: Representations of the environment where each cell has a value corresponding to its \"cost\" to travel through. Obstacles have a high cost. - Planners: Algorithms that find a path from the robot's current position to the goal. - Controllers: Algorithms that follow the planned path while reacting to immediate obstacles. <Checkpoint> <p>Why is SLAM considered a \"chicken and egg\" problem?</p> </Checkpoint> <Exercise> <p>Explore the Nav2 documentation. Run the Nav2 getting started example and send a navigation goal to the simulated robot in RViz2.</p> </Exercise> <Outcome> <p>You now have a conceptual framework for understanding the complex topic of robot navigation. You are ready to dive deeper into the specific algorithms and tools used to make robots navigate autonomously.</p> </Outcome> <SuccessCriteria> <ul> <li>Explain the difference between localization and mapping.</li> <li>Describe the inputs and outputs of a SLAM algorithm.</li> <li>List the main components of the Nav2 stack.</li> </ul> </SuccessCriteria>",
