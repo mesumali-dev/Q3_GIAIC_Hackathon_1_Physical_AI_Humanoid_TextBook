@@ -36,7 +36,7 @@ class RetrievalCLI:
         parser.add_argument(
             "--query",
             type=str,
-            required=True,
+            required=False,  # Made optional since --run-tests doesn't need it
             help="The natural language query text"
         )
 

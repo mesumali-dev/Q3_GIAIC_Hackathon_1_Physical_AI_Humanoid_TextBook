@@ -1,5 +1,5 @@
 {
-  "chunk_id": "3b3c7025-5dc4-4c54-8ede-a52af50222f6",
+  "chunk_id": "72e7ae78-fee1-4df4-a0ba-9dc6481bb084",
   "page_url": "https://local-content/module2/chapter2x",
   "heading_path": "",
   "content_raw": "from your simulated robot and visualize the resulting bounding boxes in RViz2.</p> </Exercise> <Outcome> <p>You can now give your robot the ability to recognize objects in its environment. This is a crucial step towards building intelligent robots that can interact with the world in a meaningful way.</p> </Outcome> <SuccessCriteria> <ul> <li>Run a ROS 2 node that performs object detection on a camera feed.</li> <li>Explain the difference between an image and a point cloud.</li> <li>Describe a use case for semantic segmentation in robotics.</li> </ul> </SuccessCriteria>",

@@ -1,5 +1,5 @@
 {
-  "chunk_id": "c9592549-1496-4a38-afbf-e498ef79ad78",
+  "chunk_id": "9a356841-f5a8-499e-8e11-a517828f1c67",
   "page_url": "https://local-content/tutorial-basics/congratulations",
   "heading_path": "",
   "content_raw": "Congratulations! You have just learned the basics of Docusaurus and made some changes to the initial template. Docusaurus has much more to offer! Have 5 more minutes? Take a look at versioning and i18n. Anything unclear or buggy in this tutorial? Please report it! What's next? - Read the official documentation - Modify your site configuration with docusaurus.config.js - Add navbar and footer items with themeConfig - Add a custom Design and Layout - Add a search bar - Find inspirations in the Docusaurus showcase - Get involved in the Docusaurus Community",

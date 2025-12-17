@@ -89,23 +89,82 @@ class RetrievalService:
             List of reconstructed content chunks with metadata
         """
         reconstructed_chunks = []
-        for result in search_results:
+
+        # Handle different result formats based on the Qdrant client version
+        # For newer query_points API, results are in search_results.points
+        points = getattr(search_results, 'points', search_results)
+
+        for result in points:
             try:
-                # Extract payload data
-                payload = result.payload if hasattr(result, 'payload') else result.get('payload', {})
-                metadata = payload.get('metadata', {})
+                # Extract payload data - handle both old and new API formats
+                if hasattr(result, 'payload'):
+                    # New API format
+                    payload = result.payload or {}
+                elif hasattr(result, 'dict()'):
+                    # If it's a model object
+                    payload = getattr(result, 'payload', {}) or {}
+                else:
+                    # Old format or dict
+                    payload = result.get('payload', {}) if isinstance(result, dict) else {}
 
-                # Create content chunk from result
-                chunk_data = {
-                    'id': result.id if hasattr(result, 'id') else result.get('id', ''),
-                    'text': metadata.get('text', ''),
-                    'url': metadata.get('url', ''),
-                    'section_hierarchy': metadata.get('section_hierarchy', []),
-                    'chunk_id': metadata.get('chunk_id', ''),
-                    'position': metadata.get('position')
-                }
+                # Extract metadata from payload - handle both nested and flat structures
+                metadata = payload if isinstance(payload, dict) else {}
 
-                reconstructed_chunks.append(chunk_data)
+                # Extract fields with fallback options for different payload structures
+                # Try nested metadata structure first, then flat structure
+                text = (
+                    metadata.get('metadata', {}).get('text', '') or
+                    metadata.get('text', '') or
+                    metadata.get('content', '') or
+                    ''
+                )
+
+                url = (
+                    metadata.get('metadata', {}).get('url', '') or
+                    metadata.get('url', '') or
+                    metadata.get('source', '') or
+                    metadata.get('source_url', '') or
+                    ''
+                )
+
+                section_hierarchy = (
+                    metadata.get('metadata', {}).get('section_hierarchy', []) or
+                    metadata.get('section_hierarchy', []) or
+                    metadata.get('sections', []) or
+                    []
+                )
+
+                chunk_id = (
+                    metadata.get('metadata', {}).get('chunk_id', '') or
+                    metadata.get('chunk_id', '') or
+                    metadata.get('id', '') or
+                    ''
+                )
+
+                position = (
+                    metadata.get('metadata', {}).get('position') or
+                    metadata.get('position') or
+                    metadata.get('idx', 0) or
+                    0
+                )
+
+                # Create content chunk from result - only if text and url are not empty
+                if text and url:
+                    chunk_data = {
+                        'id': getattr(result, 'id', result.get('id', '')) if isinstance(result, dict) else getattr(result, 'id', ''),
+                        'text': text,
+                        'url': url,
+                        'section_hierarchy': section_hierarchy,
+                        'chunk_id': chunk_id,
+                        'position': position
+                    }
+
+                    reconstructed_chunks.append(chunk_data)
+                else:
+                    # Log when we skip chunks due to missing text or url
+                    self.logger.debug(f"Skipping chunk due to missing text or url: text_len={len(text)}, url_len={len(url)}")
+                    continue
+
             except Exception as e:
                 self.logger.warning(f"Error reconstructing context for result: {str(e)}")
                 continue
@@ -149,10 +208,19 @@ class RetrievalService:
             # Calculate retrieval time
             retrieval_time_ms = (time.time() - start_time) * 1000
 
-            # Extract scores from search results
+            # Extract scores from search results - handle different API versions
             scores = []
-            for result in search_results:
-                score = result.score if hasattr(result, 'score') else result.get('score', 0)
+            points = getattr(search_results, 'points', search_results)
+            for result in points:
+                if hasattr(result, 'score'):
+                    # New API format
+                    score = result.score
+                elif hasattr(result, 'dict()'):
+                    # If it's a model object with different attribute name
+                    score = getattr(result, 'score', 0)
+                else:
+                    # Old format or dict
+                    score = result.get('score', 0) if isinstance(result, dict) else 0
                 scores.append(score)
 
             # Calculate average score for logging
@@ -169,12 +237,15 @@ class RetrievalService:
                     continue  # Skip invalid chunks but continue processing
 
             # Create and return retrieval result
+            # Get the total number of results from the search_results object
+            total_search_results = len(getattr(search_results, 'points', search_results)) if hasattr(search_results, '__len__') else 0
+
             result = RetrievalResult(
                 query=query,
                 chunks=content_chunks,
                 scores=scores[:len(content_chunks)],  # Only include scores for valid chunks
                 retrieval_time_ms=retrieval_time_ms,
-                total_results=len(search_results)
+                total_results=total_search_results
             )
 
             # Log retrieval metrics
