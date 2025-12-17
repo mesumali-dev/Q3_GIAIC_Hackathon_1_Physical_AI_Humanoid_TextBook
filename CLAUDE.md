@@ -221,6 +221,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Qdrant Cloud Free Tier (vector database), temporary local storage for processing (001-book-content-rag-pipeline)
 - Python 3.11 + Cohere, Qdrant-client, requests, uv (package manager) (002-retrieval-pipeline)
 - Qdrant Cloud Free Tier (vector database from spec-1) (002-retrieval-pipeline)
+- Python 3.11 + FastAPI, OpenAI Agents Python SDK, Qdrant-client, Cohere, Uvicorn (003-rag-agent)
+- Qdrant Cloud (vector database), environment variables for API keys (003-rag-agent)
 
 ## Recent Changes
 - 001-book-content-rag-pipeline: Added Python 3.11+ + requests, beautifulsoup4, cohere, qdrant-client, tiktoken, uv (package manager).
