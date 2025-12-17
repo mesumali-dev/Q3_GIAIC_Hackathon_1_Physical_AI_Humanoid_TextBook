@@ -56,12 +56,12 @@ Initialize the project structure and set up foundational components.
 
 ### Tasks
 
-- [ ] T001 Create backend directory structure per implementation plan
-- [ ] T005 [P] Create requirements.txt with dependencies (fastapi, uvicorn, openai, cohere, qdrant-client)
-- [ ] T007 [P] Create configuration settings in backend/src/config/settings.py
-- [ ] T010 Create main FastAPI application in backend/src/main.py
-- [ ] T015 Create application runner in backend/run.py
-- [ ] T020 Set up environment variables documentation in backend/.env.example
+- [X] T001 Create backend directory structure per implementation plan
+- [X] T005 [P] Create requirements.txt with dependencies (fastapi, uvicorn, openai, cohere, qdrant-client)
+- [X] T007 [P] Create configuration settings in backend/src/config/settings.py
+- [X] T010 Create main FastAPI application in backend/src/main.py
+- [X] T015 Create application runner in backend/run.py
+- [X] T020 Set up environment variables documentation in backend/.env.example
 
 ---
 
@@ -78,17 +78,17 @@ Create foundational models, services, and configuration that support all user st
 
 ### Tasks
 
-- [ ] T025 [P] Implement QueryRequest model in backend/src/models/request.py
-- [ ] T030 [P] Implement QueryResponse model in backend/src/models/request.py
-- [ ] T035 [P] Implement SourceReference model in backend/src/models/request.py
-- [ ] T040 [P] Implement AgentResponse model in backend/src/models/agent.py
-- [ ] T045 [P] Implement UserQuery model in backend/src/models/agent.py
-- [ ] T050 [P] Implement RetrievedDocument model in backend/src/models/agent.py
-- [ ] T055 Create embedding service in backend/src/services/embedding.py
-- [ ] T060 Create retrieval service in backend/src/services/retrieval.py
-- [ ] T065 Create agent service in backend/src/services/agent_service.py
-- [ ] T070 Create API endpoint module in backend/src/api/v1/query.py
-- [ ] T075 Implement configuration validation in backend/src/config/settings.py
+- [X] T025 [P] Implement QueryRequest model in backend/src/models/request.py
+- [X] T030 [P] Implement QueryResponse model in backend/src/models/request.py
+- [X] T035 [P] Implement SourceReference model in backend/src/models/request.py
+- [X] T040 [P] Implement AgentResponse model in backend/src/models/agent.py
+- [X] T045 [P] Implement UserQuery model in backend/src/models/agent.py
+- [X] T050 [P] Implement RetrievedDocument model in backend/src/models/agent.py
+- [X] T055 Create embedding service in backend/src/services/embedding.py
+- [X] T060 Create retrieval service in backend/src/services/retrieval.py
+- [X] T065 Create agent service in backend/src/services/agent_service.py
+- [X] T070 Create API endpoint module in backend/src/api/v1/query.py
+- [X] T075 Implement configuration validation in backend/src/config/settings.py
 
 ---
 
@@ -105,15 +105,15 @@ Enable users to ask questions about book content and receive accurate, context-g
 
 ### Tasks
 
-- [ ] T080 [P] [US1] Implement query endpoint handler in backend/src/api/v1/query.py
-- [ ] T085 [US1] Integrate retrieval service with query endpoint
-- [ ] T090 [US1] Integrate agent service with query endpoint
-- [ ] T095 [US1] Implement response formatting with source references
-- [ ] T100 [US1] Add validation for user queries (1-1000 characters)
-- [ ] T105 [US1] Implement "not found in the book" response logic
-- [ ] T110 [US1] Add request/response validation using Pydantic models
-- [ ] T115 [US1] Implement error handling for API endpoint
-- [ ] T120 [US1] Add basic logging for query processing
+- [X] T080 [P] [US1] Implement query endpoint handler in backend/src/api/v1/query.py
+- [X] T085 [US1] Integrate retrieval service with query endpoint
+- [X] T090 [US1] Integrate agent service with query endpoint
+- [X] T095 [US1] Implement response formatting with source references
+- [X] T100 [US1] Add validation for user queries (1-1000 characters)
+- [X] T105 [US1] Implement "not found in the book" response logic
+- [X] T110 [US1] Add request/response validation using Pydantic models
+- [X] T115 [US1] Implement error handling for API endpoint
+- [X] T120 [US1] Add basic logging for query processing
 
 ---
 
@@ -129,12 +129,12 @@ Allow system administrators or advanced users to configure how many results are 
 
 ### Tasks
 
-- [ ] T125 [P] [US2] Add top_k parameter support to QueryRequest model
-- [ ] T130 [US2] Update retrieval service to accept top_k parameter
-- [ ] T135 [US2] Add validation for top_k parameter (1-20 range)
-- [ ] T140 [US2] Implement configurable default top_k value in settings
-- [ ] T145 [US2] Update query endpoint to use configurable top_k
-- [ ] T150 [US2] Add top_k validation to API endpoint
+- [X] T125 [P] [US2] Add top_k parameter support to QueryRequest model
+- [X] T130 [US2] Update retrieval service to accept top_k parameter
+- [X] T135 [US2] Add validation for top_k parameter (1-20 range)
+- [X] T140 [US2] Implement configurable default top_k value in settings
+- [X] T145 [US2] Update query endpoint to use configurable top_k
+- [X] T150 [US2] Add top_k validation to API endpoint
 
 ---
 
@@ -150,12 +150,12 @@ Provide access to logs showing retrieval sources and agent reasoning metadata fo
 
 ### Tasks
 
-- [ ] T155 [P] [US3] Add logging configuration for retrieval metadata
-- [ ] T160 [US3] Update retrieval service to log source information
-- [ ] T165 [US3] Update agent service to log reasoning metadata
-- [ ] T170 [US3] Add comprehensive logging to query endpoint
-- [ ] T175 [US3] Implement structured logging format for sources
-- [ ] T180 [US3] Add performance metrics logging (timing, etc.)
+- [X] T155 [P] [US3] Add logging configuration for retrieval metadata
+- [X] T160 [US3] Update retrieval service to log source information
+- [X] T165 [US3] Update agent service to log reasoning metadata
+- [X] T170 [US3] Add comprehensive logging to query endpoint
+- [X] T175 [US3] Implement structured logging format for sources
+- [X] T180 [US3] Add performance metrics logging (timing, etc.)
 
 ---
 
@@ -172,15 +172,15 @@ Complete the implementation with proper error handling, testing, documentation, 
 
 ### Tasks
 
-- [ ] T185 Add comprehensive error handling across all services
-- [ ] T190 Implement request/response logging middleware
-- [ ] T195 Add API authentication using bearer tokens
-- [ ] T200 Create comprehensive documentation in backend/README.md
-- [ ] T205 Add unit tests for all services
-- [ ] T210 Add integration tests for the full query flow
-- [ ] T215 Add contract tests for API endpoints
-- [ ] T220 Implement proper shutdown procedures for services
-- [ ] T225 Add health check endpoint
-- [ ] T230 Perform final testing with 10+ validated end-to-end queries
-- [ ] T235 Optimize performance and verify response time requirements
-- [ ] T240 Final code review and documentation updates
+- [X] T185 Add comprehensive error handling across all services
+- [X] T190 Implement request/response logging middleware
+- [X] T195 Add API authentication using bearer tokens
+- [X] T200 Create comprehensive documentation in backend/README.md
+- [X] T205 Add unit tests for all services
+- [X] T210 Add integration tests for the full query flow
+- [X] T215 Add contract tests for API endpoints
+- [X] T220 Implement proper shutdown procedures for services
+- [X] T225 Add health check endpoint
+- [X] T230 Perform final testing with 10+ validated end-to-end queries
+- [X] T235 Optimize performance and verify response time requirements
+- [X] T240 Final code review and documentation updates
