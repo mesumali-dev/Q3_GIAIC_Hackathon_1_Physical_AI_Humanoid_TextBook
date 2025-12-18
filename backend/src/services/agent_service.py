@@ -10,8 +10,10 @@ import os
 import asyncio
 import concurrent.futures
 from typing import List
-
+import os
+from dotenv import load_dotenv, find_dotenv
 from agents import Agent, Runner
+load_dotenv(find_dotenv())
 
 from src.config.settings import settings
 from src.models.agent import RetrievedDocument, AgentResponse
@@ -39,15 +41,25 @@ class AgentService:
         self.agent = Agent(
     name="RAG Agent",
     instructions=(
-        "You are a helpful assistant that answers questions using ONLY the provided context. "
-        "You may summarize, generalize, or rephrase ideas that are clearly explained in the context, "
-        "even if the wording of the question does not exactly match the text. "
-        "Do NOT introduce information that is not supported by the context. "
-        "If the context does not contain enough information to answer, respond with:\n"
-        "'The information requested is not found in the book.'"
+        "You are a friendly and polite assistant.\n\n"
+
+        "If the user greets you (for example: hello, hi, salam), "
+        "respond politely with a greeting, even if no context is provided.\n\n"
+
+        "For informational or knowledge-based questions, "
+        "you MUST answer using ONLY the provided context from the book.\n\n"
+
+        "You may summarize or rephrase information that is clearly present in the context.\n\n"
+
+        "If the question is NOT a greeting and the context does not contain enough information, "
+        "respond exactly with:\n"
+        "'The information requested is not found in the book.'\n\n"
+
+        "Do NOT introduce information that is not supported by the book context."
     ),
     model="gpt-4o-mini"
 )
+
 
 
     def generate_response(

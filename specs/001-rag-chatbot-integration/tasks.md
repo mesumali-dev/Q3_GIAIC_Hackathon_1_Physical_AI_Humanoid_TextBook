@@ -28,10 +28,10 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create backend project structure with FastAPI dependencies
-- [ ] T002 Create frontend project structure with Docusaurus dependencies
-- [ ] T003 [P] Configure environment variables for backend API keys
-- [ ] T004 [P] Set up project configuration files for both backend and frontend
+- [x] T001 Create backend project structure with FastAPI dependencies
+- [x] T002 Create frontend project structure with Docusaurus dependencies
+- [x] T003 [P] Configure environment variables for backend API keys
+- [x] T004 [P] Set up project configuration files for both backend and frontend
 
 ---
 
@@ -41,12 +41,12 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Setup backend CORS middleware for Docusaurus domain access
-- [ ] T006 [P] Create backend API router and base configuration
-- [ ] T007 [P] Create backend models for UserQuery, RAGResponse, SourceCitation, and ChatSession
-- [ ] T008 Create frontend service for API communication in frontend/src/services/ChatbotService.js
-- [ ] T009 Setup backend validation for request/response schemas
-- [ ] T010 Configure backend connection to Qdrant vector database
+- [x] T005 Setup backend CORS middleware for Docusaurus domain access
+- [x] T006 [P] Create backend API router and base configuration
+- [x] T007 [P] Create backend models for UserQuery, RAGResponse, SourceCitation, and ChatSession
+- [x] T008 Create frontend service for API communication in frontend/src/services/ChatbotService.js
+- [x] T009 Setup backend validation for request/response schemas
+- [x] T010 Configure backend connection to Qdrant vector database
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -60,13 +60,13 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 ### Implementation for User Story 1
 
-- [ ] T011 [P] [US1] Create backend POST /query endpoint in backend/src/api/query.py
-- [ ] T012 [US1] Implement backend query processing logic in backend/src/services/query_service.py
-- [ ] T013 [US1] Create frontend Chatbot component in frontend/src/components/Chatbot.jsx
-- [ ] T014 [US1] Implement frontend UI with input box and submit button in frontend/src/components/Chatbot.jsx
-- [ ] T015 [US1] Connect frontend to backend API in frontend/src/components/Chatbot.jsx
-- [ ] T016 [US1] Display response with source citations in frontend/src/components/Chatbot.jsx
-- [ ] T017 [US1] Add loading indicators during response processing in frontend/src/components/Chatbot.jsx
+- [x] T011 [P] [US1] Create backend POST /query endpoint in backend/src/api/query.py
+- [x] T012 [US1] Implement backend query processing logic in backend/src/services/query_service.py
+- [x] T013 [US1] Create frontend Chatbot component in frontend/src/components/Chatbot.jsx
+- [x] T014 [US1] Implement frontend UI with input box and submit button in frontend/src/components/Chatbot.jsx
+- [x] T015 [US1] Connect frontend to backend API in frontend/src/components/Chatbot.jsx
+- [x] T016 [US1] Display response with source citations in frontend/src/components/Chatbot.jsx
+- [x] T017 [US1] Add loading indicators during response processing in frontend/src/components/Chatbot.jsx
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -80,12 +80,12 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 ### Implementation for User Story 2
 
-- [ ] T018 [P] [US2] Update backend to support contextMode parameter in backend/src/api/query.py
-- [ ] T019 [US2] Modify backend query service to handle selected text constraint in backend/src/services/query_service.py
-- [ ] T020 [US2] Add selected text capture functionality in frontend/src/components/Chatbot.jsx
-- [ ] T021 [US2] Implement selected text mode toggle in frontend/src/components/Chatbot.jsx
-- [ ] T022 [US2] Pass selected text to backend API in frontend/src/components/Chatbot.jsx
-- [ ] T023 [US2] Update UI to show selected text mode status in frontend/src/components/Chatbot.jsx
+- [x] T018 [P] [US2] Update backend to support contextMode parameter in backend/src/api/query.py
+- [x] T019 [US2] Modify backend query service to handle selected text constraint in backend/src/services/query_service.py
+- [x] T020 [US2] Add selected text capture functionality in frontend/src/components/Chatbot.jsx
+- [x] T021 [US2] Implement selected text mode toggle in frontend/src/components/Chatbot.jsx
+- [x] T022 [US2] Pass selected text to backend API in frontend/src/components/Chatbot.jsx
+- [x] T023 [US2] Update UI to show selected text mode status in frontend/src/components/Chatbot.jsx
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -99,12 +99,12 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 ### Implementation for User Story 3
 
-- [ ] T024 [P] [US3] Implement backend error handling for service failures in backend/src/api/query.py
-- [ ] T025 [US3] Create error response schemas in backend/src/models/error.py
-- [ ] T026 [US3] Add frontend error handling for API failures in frontend/src/components/Chatbot.jsx
-- [ ] T027 [US3] Display clear error messages to users in frontend/src/components/Chatbot.jsx
-- [ ] T028 [US3] Handle empty or inadequate responses gracefully in frontend/src/components/Chatbot.jsx
-- [ ] T029 [US3] Ensure chatbot doesn't break documentation experience in frontend/src/components/Chatbot.jsx
+- [x] T024 [P] [US3] Implement backend error handling for service failures in backend/src/api/query.py
+- [x] T025 [US3] Create error response schemas in backend/src/models/error.py
+- [x] T026 [US3] Add frontend error handling for API failures in frontend/src/components/Chatbot.jsx
+- [x] T027 [US3] Display clear error messages to users in frontend/src/components/Chatbot.jsx
+- [x] T028 [US3] Handle empty or inadequate responses gracefully in frontend/src/components/Chatbot.jsx
+- [x] T029 [US3] Ensure chatbot doesn't break documentation experience in frontend/src/components/Chatbot.jsx
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -114,12 +114,12 @@ description: "Task list for Frontend-Backend Integration & In-Book RAG Chatbot U
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T030 [P] Add responsive design to chatbot component in frontend/src/components/Chatbot.jsx
-- [ ] T031 [P] Style chatbot to match book theme in frontend/src/css/chatbot.css
-- [ ] T032 Integrate chatbot component into Docusaurus layout in frontend/src/pages/
-- [ ] T033 Add performance monitoring and ensure <10% page load impact
-- [ ] T034 Run quickstart.md validation checklist
-- [ ] T035 Update documentation with deployment instructions
+- [x] T030 [P] Add responsive design to chatbot component in frontend/src/components/Chatbot.jsx
+- [x] T031 [P] Style chatbot to match book theme in frontend/src/css/chatbot.css
+- [x] T032 Integrate chatbot component into Docusaurus layout in frontend/src/pages/
+- [x] T033 Add performance monitoring and ensure <10% page load impact
+- [x] T034 Run quickstart.md validation checklist
+- [x] T035 Update documentation with deployment instructions
 
 ---
 

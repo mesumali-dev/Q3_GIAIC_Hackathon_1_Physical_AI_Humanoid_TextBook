@@ -5,7 +5,7 @@ This module defines the FastAPI endpoint for submitting questions and receiving
 answers with source references.
 """
 
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, HTTPException, Depends
 from typing import Dict, Any
 import time
 import logging
@@ -14,7 +14,6 @@ from src.services.embedding import EmbeddingService
 from src.services.retrieval import RetrievalService
 from src.services.agent_service import AgentService
 from src.config.settings import settings
-from src.middleware import get_api_key, verify_api_key
 
 
 # Create API router
@@ -45,20 +44,9 @@ def get_agent_service():
     return agent_service
 
 
-async def authenticate_api_key(request: Request):
-    """Dependency to authenticate API key."""
-    api_key = get_api_key(request)
-    if not verify_api_key(api_key):
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid API key"
-        )
-
-
 @router.post("/query", response_model=QueryResponse)
 async def query_endpoint(
     request: QueryRequest,
-    _: str = Depends(authenticate_api_key),  # Authentication dependency
     embed_service: EmbeddingService = Depends(get_embedding_service),
     retrieval_service: RetrievalService = Depends(get_retrieval_service),
     agent_service: AgentService = Depends(get_agent_service)

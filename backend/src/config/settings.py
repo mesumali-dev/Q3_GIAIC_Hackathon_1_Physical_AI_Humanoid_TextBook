@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-from typing import Optional
+from typing import Optional, List
 
 
 class Settings(BaseSettings):
@@ -32,6 +32,7 @@ class Settings(BaseSettings):
     # Application Configuration
     app_host: str = "0.0.0.0"
     app_port: int = 8000
+    backend_cors_origins: List[str] = ["http://localhost:3000", "http://localhost:8080", "https://yourusername.github.io"]
 
     # Additional Configuration (from existing .env)
     book_base_url: Optional[str] = "https://physical-ai-humans-text-five.vercel.app/"
@@ -44,8 +45,10 @@ class Settings(BaseSettings):
     crawl_delay: Optional[int] = 1
     api_key: Optional[str] = None  # For API authentication
 
-    class Config:
-        env_file = ".env"
+    model_config = {
+        "env_file": ".env",
+        "env_nested_delimiter": "__"
+    }
 
 
 # Create a single instance of settings
