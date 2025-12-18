@@ -1,0 +1,18 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simple square box icon in the style of noun project -->
+  <defs>
+    <linearGradient id="boxGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/> <!-- Gold yellow -->
+      <stop offset="100%" stop-color="#FFA500"/> <!-- Orange yellow -->
+    </linearGradient>
+  </defs>
+
+  <!-- Main box -->
+  <rect x="40" y="40" width="120" height="120" rx="8" ry="8" fill="none" stroke="url(#boxGradient)" stroke-width="8"/>
+
+  <!-- Lid of the box -->
+  <path d="M40 40 L60 20 L140 20 L160 40 Z" fill="none" stroke="url(#boxGradient)" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- Inner details -->
+  <rect x="60" y="60" width="80" height="80" rx="4" ry="4" fill="none" stroke="url(#boxGradient)" stroke-width="2" stroke-dasharray="6,4"/>
+</svg>
