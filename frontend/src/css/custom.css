@@ -39,7 +39,7 @@
   /* New Color Palette - Dark Mode - Deep Purple */
   --ifm-background-color: #120a1f; /* Deep dark purple background */
   --ifm-font-color-base: #e1bee7; /* Light purple text */
-  
+
   --sidebar-bg-color: #1a0f2e; /* Darker purple sidebar */
   --sidebar-text-color: #e1bee7; /* Light text */
   --sidebar-accent-color: #d1c4e9; /* Lighter purple accent */
@@ -48,6 +48,308 @@
   --sidebar-active-text: #ffffff;
   --sidebar-border-color: #311b5e;
   --sidebar-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/*
+ * ============================================================================
+ * Navbar Styles
+ * ============================================================================
+ */
+
+/* Gradient from dark purple to dark black */
+.navbar {
+  background: linear-gradient(90deg, #1f0025 0%, #000000 100%) !important; /* Gradient from dark purple to black */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar__brand {
+  color: #ffffff !important; /* White text as requested */
+  font-weight: 600;
+}
+
+.navbar__brand:hover {
+  color: #f0f0f0 !important; /* Lighter white on hover */
+}
+
+.navbar__item {
+  color: #ffffff !important; /* White text */
+}
+
+.navbar__item:hover {
+  color: #f0f0f0 !important; /* Lighter white on hover */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Subtle white hover */
+  border-radius: 4px;
+}
+
+.navbar__link {
+  color: #ffffff !important; /* White text */
+}
+
+.navbar__link:hover {
+  color: #f0f0f0 !important; /* Lighter white on hover */
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Subtle white hover */
+  border-radius: 4px;
+}
+
+.navbar__logo {
+  height: 3rem !important;
+  width: 3rem !important;
+  /* object-fit: contain; */
+  transition: all 0.3s ease;
+}
+
+.navbar__logo:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.6); /* White border on hover */
+}
+
+/* Dark Mode Navbar */
+[data-theme='dark'] .navbar {
+  background: linear-gradient(90deg, #14021c 0%, #000000 100%) !important; /* Darker purple to black for dark mode */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] .navbar__brand,
+[data-theme='dark'] .navbar__item,
+[data-theme='dark'] .navbar__link {
+  color: #ffffff !important; /* White text */
+}
+
+[data-theme='dark'] .navbar__item:hover,
+[data-theme='dark'] .navbar__link:hover {
+  color: #f0f0f0 !important; /* Lighter white on hover */
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/*
+ * ============================================================================
+ * Sidebar Styles
+ * ============================================================================
+ */
+
+/* Enhanced dark sidebar with yellow-ish text */
+.menu {
+  background: linear-gradient(180deg, #000000 0%, #0d0d0d 100%) !important; /* Black gradient background */
+  color: #f9a825 !important; /* Yellow-ish text */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.3) !important; /* Subtle shadow instead of border */
+  padding: 1rem 0 !important;
+}
+
+.menu__list {
+  background: linear-gradient(180deg, #000000 0%, #0d0d0d 100%) !important;
+}
+
+.menu__list-item {
+  color: #f9a825 !important; /* Yellow-ish text */
+  margin: 0.25rem 0.75rem !important;
+}
+
+.menu__link {
+  color: #f9a825 !important; /* Yellow-ish text */
+  transition: all 0.2s ease !important;
+}
+
+.menu__link:hover {
+  background: linear-gradient(90deg, rgba(249, 168, 37, 0.1) 0%, rgba(249, 168, 37, 0.2) 100%) !important; /* Yellow gradient hover */
+  color: #fbc02d !important; /* Lighter yellow on hover */
+  transform: translateX(4px) !important;
+}
+
+.menu__link--active {
+  background: linear-gradient(90deg, rgba(249, 168, 37, 0.15) 0%, rgba(249, 168, 37, 0.25) 100%) !important; /* Yellow gradient for active */
+  color: #ffd54f !important; /* Lighter yellow for active */
+  border-left: 3px solid #f9a825 !important; /* Yellow left border for active items */
+  font-weight: 600;
+  transform: translateX(2px) !important;
+}
+
+.menu__list-item-collapsible {
+  color: #f9a825 !important; /* Yellow-ish text for collapsible items */
+  border-radius: 6px !important;
+  padding: 0.5rem 0rem !important;
+}
+
+.menu__list-item-collapsible:hover {
+  background: linear-gradient(90deg, rgba(249, 168, 37, 0.1) 0%, rgba(249, 168, 37, 0.2) 100%) !important; /* Yellow gradient hover */
+  color: #fbc02d !important; /* Lighter yellow on hover */
+  transform: translateX(4px) !important;
+}
+
+.menu__list-item-collapsible--active {
+  color: #ffd54f !important; /* Lighter yellow for active collapsible */
+  /* background: linear-gradient(90deg, rgba(249, 168, 37, 0.15) 0%, rgba(249, 168, 37, 0.25) 100%) !important; Yellow gradient */
+}
+
+.menu__caret {
+  color: #f9a825 !important; /* Yellow caret */
+  transition: transform 0.2s ease !important;
+}
+
+.menu__caret:hover {
+  color: #fbc02d !important; /* Lighter yellow on hover */
+}
+
+.menu__list-item-collapsible .menu__caret {
+  margin-right: 0.5rem !important;
+}
+
+/* Dark Mode Sidebar */
+[data-theme='dark'] .menu {
+  /* background: linear-gradient(180deg, #000000 0%, #0d0d0d 100%) !important; Black gradient background */
+  color: #f9a825 !important; /* Yellow-ish text */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.5) !important; /* Stronger shadow for dark mode */
+}
+
+[data-theme='dark'] .menu__link,
+[data-theme='dark'] .menu__list-item,
+[data-theme='dark'] .menu__list-item-collapsible {
+  color: #f9a825 !important; /* Yellow-ish text */
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background: linear-gradient(90deg, rgba(249, 168, 37, 0.15) 0%, rgba(249, 168, 37, 0.25) 100%) !important; /* Yellow gradient hover */
+  color: #fbc02d !important; /* Lighter yellow on hover */
+}
+
+[data-theme='dark'] .menu__link--active {
+  background: linear-gradient(90deg, rgba(249, 168, 37, 0.2) 0%, rgba(249, 168, 37, 0.3) 100%) !important; /* Yellow gradient for active */
+  color: #ffd54f !important; /* Lighter yellow for active */
+}
+
+/*
+ * ============================================================================
+ * Main Content Styles
+ * ============================================================================
+ */
+
+/* Black background with yellow headings and white text */
+.doc-page,
+.main-wrapper,
+.container {
+  background-color: #000000 !important; /* Black background */
+  color: #ffffff !important; /* White text */
+}
+
+/* Yellow headings */
+.doc-page h1,
+.doc-page h2,
+.doc-page h3,
+.doc-page h4,
+.doc-page h5,
+.doc-page h6,
+.main-wrapper h1,
+.main-wrapper h2,
+.main-wrapper h3,
+.main-wrapper h4,
+.main-wrapper h5,
+.main-wrapper h6 {
+  color: #f9a825 !important; /* Yellow-ish headings */
+}
+
+/* Ensure all text content is white */
+.doc-page p,
+.doc-page span,
+.doc-page div,
+.doc-page li,
+.main-wrapper p,
+.main-wrapper span,
+.main-wrapper div,
+.main-wrapper li {
+  color: #ffffff !important; /* White text */
+}
+
+/* Code blocks in content */
+.doc-page code,
+.main-wrapper code {
+  background-color: #1a1a1a !important; /* Dark background for code */
+  color: #f9a825 !important; /* Yellow text for code */
+  border: 1px solid #f9a825 !important; /* Yellow border */
+}
+
+/* Code blocks */
+.doc-page pre,
+.main-wrapper pre {
+  background-color: #1a1a1a !important; /* Dark background for code blocks */
+  border: 1px solid #f9a825 !important; /* Yellow border */
+}
+
+.doc-page pre code,
+.main-wrapper pre code {
+  color: #ffffff !important; /* White text for code inside pre */
+  background: none !important;
+}
+
+/* Links in content */
+.doc-page a,
+.main-wrapper a {
+  color: #f9a825 !important; /* Yellow links */
+}
+
+.doc-page a:hover,
+.main-wrapper a:hover {
+  color: #fbc02d !important; /* Lighter yellow on hover */
+}
+
+/* Blockquotes */
+.doc-page blockquote,
+.main-wrapper blockquote {
+  border-left: 4px solid #f9a825 !important; /* Yellow left border */
+  background-color: rgba(249, 168, 37, 0.05) !important; /* Subtle yellow background */
+  color: #ffffff !important; /* White text */
+}
+
+/* Tables */
+.doc-page table,
+.main-wrapper table {
+  background-color: #0d0d0d !important; /* Dark table background */
+  border: 1px solid #f9a825 !important; /* Yellow border */
+}
+
+.doc-page th,
+.main-wrapper th {
+  background-color: #1a1a1a !important; /* Dark header background */
+  color: #f9a825 !important; /* Yellow header text */
+  border: 1px solid #f9a825 !important; /* Yellow border */
+}
+
+.doc-page td,
+.main-wrapper td {
+  border: 1px solid #f9a825 !important; /* Yellow border */
+  color: #ffffff !important; /* White text */
+}
+
+/* Dark Mode Content */
+[data-theme='dark'] .doc-page,
+[data-theme='dark'] .main-wrapper {
+  background-color: #000000 !important; /* Black background */
+  color: #ffffff !important; /* White text */
+}
+
+[data-theme='dark'] .doc-page h1,
+[data-theme='dark'] .doc-page h2,
+[data-theme='dark'] .doc-page h3,
+[data-theme='dark'] .doc-page h4,
+[data-theme='dark'] .doc-page h5,
+[data-theme='dark'] .doc-page h6,
+[data-theme='dark'] .main-wrapper h1,
+[data-theme='dark'] .main-wrapper h2,
+[data-theme='dark'] .main-wrapper h3,
+[data-theme='dark'] .main-wrapper h4,
+[data-theme='dark'] .main-wrapper h5,
+[data-theme='dark'] .main-wrapper h6 {
+  color: #f9a825 !important; /* Yellow-ish headings */
+}
+
+[data-theme='dark'] .doc-page p,
+[data-theme='dark'] .doc-page span,
+[data-theme='dark'] .doc-page div,
+[data-theme='dark'] .doc-page li,
+[data-theme='dark'] .main-wrapper p,
+[data-theme='dark'] .main-wrapper span,
+[data-theme='dark'] .main-wrapper div,
+[data-theme='dark'] .main-wrapper li {
+  color: #ffffff !important; /* White text */
 }
 
 /*
