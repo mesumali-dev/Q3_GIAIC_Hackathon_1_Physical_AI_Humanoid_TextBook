@@ -2,29 +2,15 @@
 
 .footer {
   background: linear-gradient(135deg, var(--ifm-color-emphasis-100) 0%, var(--ifm-color-emphasis-200) 100%);
-  padding: 2.5rem 0 0;
   color: var(--ifm-font-color-base);
   border-top: 1px solid var(--ifm-toc-border-color);
-}
-
-.footer__bottom {
-  padding: 1rem 0;
-  border-top: 1px solid var(--ifm-toc-border-color);
-  background: var(--ifm-color-emphasis-100);
-  margin-top: 1rem;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .footer__inner {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 4rem;
   margin-bottom: 1.5rem;
 }
 
@@ -240,7 +226,8 @@
   gap: 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .footer__copyright {
@@ -274,30 +261,28 @@
 /* Responsive design */
 @media (max-width: 996px) {
   .footer__inner {
-    flex-direction: column;
+    flex-direction: column; /* Keep as column for 996px breakpoint */
+    gap: 2rem;
   }
 
   .footer__col {
-    min-width: 100%;
+    min-width: unset; /* Remove min-width to allow flexible sizing */
+    width: 100%; /* Ensure they still take full width if they stack */
   }
 
-  .footer__col--first {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .footer__logo-section {
-    flex-direction: row;
-    width: 100%;
+  .footer__col--first,
+  .footer__col--contact {
+    width: 100%; /* Initially stack for this breakpoint */
   }
 
   .footer__col--links {
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-wrap: wrap; /* Allow quick links to wrap */
+    gap: 2rem;
   }
 
   .footer__item-col {
-    min-width: 100%;
+    flex: 1 1 calc(50% - 1rem); /* Two columns within quick links section */
+    min-width: 150px; /* Ensure a minimum width */
   }
 
   .footer__bottom-content {
@@ -323,6 +308,34 @@
     padding: 2rem 0 0;
   }
 
+  .footer__inner {
+    flex-direction: row; /* Change to row for 768px and smaller */
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer__col--first {
+    flex: 1 1 100%; /* Make first column stack */
+    min-width: unset;
+  }
+
+  .footer__col--contact {
+    flex: 1 1 100%; /* Make contact column stack */
+    min-width: unset;
+    margin-top: 1.5rem; /* Add space above it if it stacks */
+  }
+
+  .footer__col--links {
+    flex: 1 1 100%; /* Quick links take full width and wrap below */
+    flex-direction: row; /* Ensure internal item-cols are in a row */
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer__item-col {
+    flex: 1 1 calc(50% - 0.5rem); /* Adjust for smaller gaps */
+  }
+
   .footer__social-icons {
     gap: 0.75rem;
   }
@@ -341,5 +354,30 @@
   .footer__bottom-link {
     padding: 0.2rem 0.4rem;
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) { /* Even smaller screens: stack all columns */
+  .footer__inner {
+    flex-direction: column;
+  }
+
+  .footer__col--first,
+  .footer__col--contact,
+  .footer__col--links {
+    flex: 1 1 100%; /* All columns stack */
+  }
+
+  .footer__col--first {
+    margin-bottom: 1rem; /* Add space between stacked columns */
+  }
+
+  .footer__col--links {
+    flex-direction: column; /* Stack quick link sub-columns too */
+  }
+
+  .footer__item-col {
+    flex: 1 1 100%; /* Stack individual quick link columns */
+    margin-bottom: 1rem;
   }
 }

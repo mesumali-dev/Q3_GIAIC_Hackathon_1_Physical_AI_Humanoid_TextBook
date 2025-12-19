@@ -68,6 +68,24 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        fromExtensions: ['html'],
+        redirects: [
+          {
+            to: '/auth/signup',
+            from: ['/signup', '/register'],
+          },
+          {
+            to: '/auth/signin',
+            from: ['/signin', '/login'],
+          },
+        ],
+      },
+    ],
+  ],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -87,7 +105,16 @@ const config: Config = {
           position: 'left',
           label: 'Textbook',
         },
-
+        {
+          to: '/auth/signup',
+          label: 'Sign Up',
+          position: 'right',
+        },
+        {
+          to: '/auth/signin',
+          label: 'Sign In',
+          position: 'right',
+        },
         {
           href: 'https://github.com/mesumali-dev/Physical-AI-Humanoid-Robotics-TextBook',
           label: 'GitHub',

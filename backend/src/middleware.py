@@ -6,9 +6,13 @@ This module provides middleware for logging requests/responses and authenticatin
 
 import time
 import logging
-from typing import Callable, Awaitable
+import jwt
+from typing import Callable, Awaitable, Optional
 from fastapi import Request, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.responses import Response
+from datetime import datetime
+import uuid
 from src.config.settings import settings
 
 
@@ -100,3 +104,46 @@ async def logging_middleware(request: Request, call_next: Callable[[Request], Aw
 
         logger.error(f"Error in request processing: {str(e)} - Process time: {process_time:.3f}s")
         raise
+
+
+class AuthMiddleware:
+    def __init__(self):
+        self.security = HTTPBearer()
+
+    async def verify_token(self, token: str) -> Optional[uuid.UUID]:
+        """
+        Verify the authentication token and return the user ID if valid.
+        """
+        try:
+            payload = jwt.decode(token, settings.better_auth_secret, algorithms=["HS256"])
+            user_id = payload.get("user_id")
+            exp = payload.get("exp")
+
+            if not user_id:
+                return None
+
+            # Check if token is expired
+            if exp and datetime.fromtimestamp(exp) < datetime.utcnow():
+                return None
+
+            return uuid.UUID(user_id)
+        except jwt.PyJWTError:
+            return None
+        except ValueError:
+            # Invalid UUID format
+            return None
+
+    async def get_current_user_id(self, request: Request) -> Optional[uuid.UUID]:
+        """
+        Extract and verify the user ID from the authorization header.
+        """
+        auth_header = request.headers.get("Authorization")
+        if not auth_header or not auth_header.startswith("Bearer "):
+            return None
+
+        token = auth_header[7:]  # Remove "Bearer " prefix
+        return await self.verify_token(token)
+
+
+# Global instance of the auth middleware
+auth_middleware = AuthMiddleware()

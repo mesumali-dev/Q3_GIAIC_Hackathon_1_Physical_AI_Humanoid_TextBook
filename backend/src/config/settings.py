@@ -45,6 +45,14 @@ class Settings(BaseSettings):
     crawl_delay: Optional[int] = 1
     api_key: Optional[str] = None  # For API authentication
 
+    # Better Auth Configuration
+    better_auth_url: Optional[str] = "http://localhost:8000"
+    better_auth_secret: Optional[str] = "your-better-auth-secret-key-here"
+    better_auth_trust_host: Optional[bool] = True
+
+    # Database Configuration
+    database_url: str
+
     model_config = {
         "env_file": ".env",
         "env_nested_delimiter": "__"
