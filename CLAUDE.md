@@ -227,6 +227,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Qdrant Cloud (vector database), temporary local storage for processing (001-rag-chatbot-integration)
 - Python 3.11 (FastAPI backend), TypeScript/JavaScript (Docusaurus frontend) + Better Auth, FastAPI, Docusaurus, React, Qdrant-client, OpenAI Agents SDK (001-better-auth-personalization)
 - User profile stored via Better Auth / backend store (Qdrant/PostgreSQL) (001-better-auth-personalization)
+- Python 3.11 (backend), JavaScript/TypeScript (frontend) + FastAPI (backend), Docusaurus/React (frontend), Cohere/LLM API (personalization engine), Qdrant-client (vector database) (001-chapter-personalization)
+- N/A (personalized content cached in browser session, original content from Docusaurus static files) (001-chapter-personalization)
 
 ## Recent Changes
 - 001-book-content-rag-pipeline: Added Python 3.11+ + requests, beautifulsoup4, cohere, qdrant-client, tiktoken, uv (package manager).
