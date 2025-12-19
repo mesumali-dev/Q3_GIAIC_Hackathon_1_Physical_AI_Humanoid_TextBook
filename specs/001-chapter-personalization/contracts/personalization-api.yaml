@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Chapter Personalization API
+  description: API for personalizing chapter content based on user profile
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.example.com
+    description: Production server
+
+paths:
+  /personalize/chapter:
+    post:
+      summary: Personalize chapter content based on user profile
+      description: Takes chapter content and user profile, returns personalized version
+      operationId: personalizeChapter
+      tags:
+        - personalization
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalizationRequest'
+      responses:
+        '200':
+          description: Successfully personalized chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizationResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - user not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - user profile incomplete or insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Content validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error during personalization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PersonalizationRequest:
+      type: object
+      required:
+        - chapter_content
+        - chapter_title
+        - user_profile
+      properties:
+        chapter_content:
+          type: string
+          description: The original chapter content to be personalized
+          example: "In computer science, an algorithm is a step-by-step procedure for calculations..."
+        chapter_title:
+          type: string
+          description: Title of the chapter for context
+          example: "Introduction to Algorithms"
+        user_profile:
+          $ref: '#/components/schemas/UserProfile'
+        user_id:
+          type: string
+          description: Identifier for the authenticated user
+          example: "user_12345"
+
+    UserProfile:
+      type: object
+      required:
+        - knowledge_level
+        - software_background
+        - hardware_background
+      properties:
+        knowledge_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+          description: User's knowledge level
+          example: "beginner"
+        software_background:
+          type: string
+          description: User's software experience
+          example: "Basic understanding of programming concepts"
+        hardware_background:
+          type: string
+          description: User's hardware experience
+          example: "Familiar with basic computer components"
+
+    PersonalizationResponse:
+      type: object
+      required:
+        - personalized_content
+        - structure_preserved
+        - personalization_applied
+      properties:
+        personalized_content:
+          type: string
+          description: The personalized chapter content
+          example: "In computer science, an algorithm is like a recipe - it's a clear, step-by-step set of instructions that tells a computer how to solve a problem or complete a task..."
+        structure_preserved:
+          type: boolean
+          description: Indicates if document structure was preserved
+          example: true
+        personalization_applied:
+          type: boolean
+          description: Indicates if personalization was successfully applied
+          example: true
+        processing_time:
+          type: number
+          description: Time taken for personalization in milliseconds
+          example: 2450
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "VALIDATION_ERROR"
+        message:
+          type: string
+          description: Error message
+          example: "Chapter content cannot be empty"
+        details:
+          type: object
+          description: Additional error details (optional)
+          example: {"field": "chapter_content"}
