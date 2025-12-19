@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.config.settings import settings
 from src.middleware import logging_middleware
+from src.database import create_tables
 
 
 def create_app() -> FastAPI:
@@ -14,7 +15,7 @@ def create_app() -> FastAPI:
     # Add CORS middleware
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # In production, specify exact origins
+        allow_origins=settings.backend_cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -22,6 +23,13 @@ def create_app() -> FastAPI:
 
     # Add custom logging middleware
     app.middleware("http")(logging_middleware)
+
+    @app.on_event("startup")
+    async def startup_event():
+        """Handle application startup."""
+        print("Starting up RAG Agent API...")
+        # Create database tables
+        create_tables()
 
     @app.on_event("shutdown")
     async def shutdown_event():
@@ -34,7 +42,14 @@ def create_app() -> FastAPI:
 
     # Include API routes
     from src.api.v1.query import router as query_router
+    from src.api.auth import router as auth_router
+    from src.api.user import router as user_router
+    from src.api.personalization import router as personalization_router
+
     app.include_router(query_router, prefix="/api/v1", tags=["query"])
+    app.include_router(auth_router)
+    app.include_router(user_router)
+    app.include_router(personalization_router)
 
     return app
 
